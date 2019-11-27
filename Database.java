@@ -6,15 +6,42 @@ import java.sql.PreparedStatement;
 public class Database {
 
 	public static void main(String args[]) throws Exception {
-		post("Giannis", "1234566");// adds an artist to the array
+		createAlbum();
+		createArtist();
+		inserttoartist("Lady GAGA", "pop");// adds an artist to the array
 	}
 
-	public static void post(String username, String password) {//adds artists to the astists array
+	public static void createAlbum() throws Exception {//createAlbum
+		try {
+		Connection con = getConnection();
+		PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS ALBUM(numberofsongs int, artistname char(30))");
+		create.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("Couldn'n create table);
+		}finally {
+			 System.out.println("Function completed!");
+		}
+	}
+	
+	public static void createArtist() throws Exception {//createArtist
+		try {
+		Connection con = getConnection();
+		PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS ARTISTS(aname char(30),kind char(30))");
+		create.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("Couldn'n create table);
+		}finally {
+			 System.out.println("Function completed!");
+		}
+	}
+	
+	
+	public static void post(String aname, String kind) {//adds artists to the astists array
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection()
-					.prepareStatement("INSERT INTO artists(username,password) VALUES(?,?)");
-			statement.setString(1, username);//adds useranem
-			statement.setString(2, password);//addes password
+					.prepareStatement("INSERT INTO ARTISTS(aname,kind) VALUES(?,?)");
+			statement.setString(1, aname);//adds useranem
+			statement.setString(2, kind);//addes password
 			statement.executeUpdate();//execute 
 			statement.close();
 			getConnection().close();
