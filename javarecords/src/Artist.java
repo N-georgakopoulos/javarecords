@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class Artist extends Person {
 	static Scanner sc = new Scanner(System.in);
-	ArrayList<String> album = new ArrayList<String>();
+	ArrayList<String> wannabeAlbum = new ArrayList<String>();
 	private double rating;
 	private double relevancyIndex;
-	private Album[] albums;
 	private Timeline timeline;
 	private String genre;
 	private double payPercentage;
@@ -46,14 +45,6 @@ public class Artist extends Person {
 		this.relevancyIndex = relevancyIndex;
 	}
 
-	public Album[] getAlbums() {
-		return albums;
-	}
-
-	public void setAlbums(Album[] albums) {
-		this.albums = albums;
-	}
-
 	public Timeline getTimeline() {
 		return timeline;
 	}
@@ -76,27 +67,35 @@ public class Artist extends Person {
 
 	public void setPayPercentage(double payPercentage) {
 		this.payPercentage = payPercentage;
-	}	
-
+	}
 	
 	
 	public int calculateRating() {
 		
-	}
+	} 
 	
+	//Artist creates list of songs/wannabe album that he has in mind to create//
 	public String registerAlbum () {
 		System.out.println("Insert album name: ");
 		String name = sc.nextLine();
-		album.add(name);
-		String answer  = "no";
+		wannabeAlbum.add(name);       //first line of list is the album name//
+		String answer  = "no"; 
 		do {
 			System.out.println("Insert song name: ");
 			name = sc.nextLine();
-			album.add(name);
+			wannabeAlbum.add(name);
 			System.out.println("Insert another song name, yes or no;");
 		    answer = sc.nextLine();
-		} while (answer == "yes");
-		
+		} while (answer == "yes");		
 	}
+	
+	public double popularityOfAlbums() {
+		double albumPopularity = 0;
+		for(int i = 1;i <= numberOfAlbums;i++) {
+			albumPopularity += Album.getPopularity;			
+		}
+		double pop = albumPopularity/numberOfAlbums; //μελλοντικη χρηση του μεσοσταθμισμενου μεσου ορου//
+		return pop;
+	}	
 }
 
