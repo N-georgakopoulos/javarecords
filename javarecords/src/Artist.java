@@ -89,13 +89,33 @@ public class Artist extends Person {
 		} while (answer == "yes");		
 	}
 	
-	public double popularityOfAlbums() {
-		double albumPopularity = 0;
-		for(int i = 1;i <= numberOfAlbums;i++) {
-			albumPopularity += Album.getPopularity;			
+	public void showRatings() {
+		for (int p = 0; p < Album.size(); p++) {
+			System.out.println("The popularity of each song by artist " + username + "is: " + Song.Popularity(p)); //p η σειρα του καθε τραγουδιου//
+			}
+		for (int l =0; l < numberOfAlbums; l++) {
+			System.out.println("The popularity of each album by artist " + username + "is: " +  Album.getPopularity);
 		}
-		double pop = albumPopularity/numberOfAlbums; //μελλοντικη χρηση του μεσοσταθμισμενου μεσου ορου//
+	}
+	
+	public double popularityOfAlbums() {
+		double allAlbumsPopularity = 0;
+		for(int i = 1;i <= numberOfAlbums;i++) {
+			allAlbumsPopularity += Album.getPopularity;
+		}
+		for (int o = 0; o < Album.size(); o++) {
+			
+		}
+		
+		
+		double pop = albumPopularity/numberOfAlbums; //χρηση του σταθμισμενου μεσου ορου//
 		return pop;
-	}	
+	}
+	
+	ArrayList<String> artistsPerformances = new ArrayList<String>();
+	public ArrayList<String> myPerfomances() {
+		//με βαση την κλαση performance παιρνω το ημερολογιο//
+		return artistsPerformances.contains();
+	}
 }
 
