@@ -1,4 +1,4 @@
-c class Album {
+public class Album {
 	//this class cosists of many song objects
 	private String Name;
 	private double Price;
@@ -47,4 +47,3 @@ c class Album {
 	public TotalCost(Katerina's production class){}
 	
 }
-
