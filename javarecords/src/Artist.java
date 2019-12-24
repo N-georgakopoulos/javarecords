@@ -6,19 +6,18 @@ public class Artist extends Person {
 	ArrayList<String> wannabeAlbum = new ArrayList<String>();
 	private double rating;
 	private double relevancyIndex;
-	private Timeline timeline;
+	
 	private String genre;
 	private double payPercentage;
 	
 	public Artist(String username, String password, double rating, double relevancyIndex, Album[] albums,
-			Timeline timeline, String genre, double payPercentage) {
+			String genre, double payPercentage) {
 		super(username,password);
 		this.username = username;
 		this.password = password;
 		this.rating = rating;
 		this.relevancyIndex = relevancyIndex;
 		this.albums = albums;
-		this.timeline = timeline;
 		this.genre = genre;
 		this.payPercentage = payPercentage;
 	}
@@ -45,14 +44,6 @@ public class Artist extends Person {
 		this.relevancyIndex = relevancyIndex;
 	}
 
-	public Timeline getTimeline() {
-		return timeline;
-	}
-
-	public void setTimeline(Timeline timeline) {
-		this.timeline = timeline;
-	}
-
 	public String getGenre() {
 		return genre;
 	}
@@ -69,13 +60,8 @@ public class Artist extends Person {
 		this.payPercentage = payPercentage;
 	}
 	
-	
-	public int calculateRating() {
-		
-	} 
-	
 	//Artist creates list of songs/wannabe album that he has in mind to create//
-	public String registerAlbum () {
+	public ArrayList<String> registerAlbum () {
 		System.out.println("Insert album name: ");
 		String name = sc.nextLine();
 		wannabeAlbum.add(name);       //first line of list is the album name//
@@ -86,7 +72,8 @@ public class Artist extends Person {
 			wannabeAlbum.add(name);
 			System.out.println("Insert another song name, yes or no;");
 		    answer = sc.nextLine();
-		} while (answer == "yes");		
+		} while (answer == "yes");
+		return wannabeAlbum;
 	}
 	
 	public void showRatings() {
@@ -100,8 +87,8 @@ public class Artist extends Person {
 	
 	public double popularityOfAlbums() {
 		double allAlbumsPopularity = 0;
-		for(int i = 1;i <= numberOfAlbums;i++) {
-			allAlbumsPopularity += Album.getPopularity;
+		for(int i = 1; i <= numberOfAlbums; i++) {
+			allAlbumsPopularity += Album.getPopularity();
 		}
 		for (int o = 0; o < Album.size(); o++) {
 			
@@ -117,5 +104,13 @@ public class Artist extends Person {
 		//με βαση την κλαση performance παιρνω το ημερολογιο//
 		return artistsPerformances.contains();
 	}
+	
+	public static void LivePopularity() {
+		double attendance = Performance.sales / Performance.price;
+		System.out.println("While the venue has capacity of " 
+				+ Venue.getcapacity() + "people, the number of people that actually attended is "
+				+ attendance);		
+	}
+	
 }
 
