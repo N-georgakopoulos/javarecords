@@ -1,3 +1,5 @@
+package application;
+
 public class Performance {
 	private static String venue;
 	private static double ticketPrice;
