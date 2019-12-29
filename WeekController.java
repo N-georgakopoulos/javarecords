@@ -9,28 +9,44 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class CalendarController {
+public class WeekController {
 
     @FXML
-    private Button backbtn;
+    private Button weekbtn1;
 
     @FXML
-    private Button wbutton;
+    private Button weekbtn2;
 
     @FXML
-    void MoveButtonClicked(ActionEvent event) throws IOException {
-    	Parent tableViewParent = FXMLLoader.load(WeekController.class.getResource("WeekSelectionView.fxml"));
+    private Button weekbtn3;
+
+    @FXML
+    private Button weekbtn4;
+
+    @FXML
+    private Button returnbtn;
+
+    @FXML
+    private Button mobtn;
+
+    @FXML
+    void ClickedButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void MonthSelectionClicked(ActionEvent event) throws IOException {
+    	Parent tableViewParent = FXMLLoader.load(Timeline.class.getResource("TimelineView.fxml"));
     	Scene tableViewScene = new Scene(tableViewParent);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setTitle("Calendar");
     	window.setScene(tableViewScene);
     	window.show();
     }
-   
 
     @FXML
-    void ClickedButton(ActionEvent event) throws IOException {
-    	Parent tableViewParent = FXMLLoader.load(Timeline.class.getResource("TimelineView.fxml"));
+    void ReturnClicked(ActionEvent event) throws IOException {
+    	Parent tableViewParent = FXMLLoader.load(MonthController.class.getResource("CalView.fxml"));
     	Scene tableViewScene = new Scene(tableViewParent);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setTitle("Calendar");

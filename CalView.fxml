@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CalendarController">
    <children>
       <TableView layoutX="-1.0" layoutY="29.0" prefHeight="473.0" prefWidth="900.0" style="-fx-background-color: #616A6B;">
         <columns>
@@ -20,9 +19,10 @@
             <TableColumn prefWidth="150.0" style="-fx-background-color: #717D7E;" text="Saturday" />
         </columns>
       </TableView>
-      <Button layoutX="825.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="60.0" style="-fx-background-color: #333333;" text="Go Back" textFill="#ff9b04">
+      <Button fx:id="backbtn" layoutX="833.0" layoutY="2.0" mnemonicParsing="false" onAction="#ClickedButton" style="-fx-background-color: #333333;" text="Go Back" textFill="#ff9b04" />
+      <Button fx:id="wbutton" layoutX="742.0" layoutY="4.0" mnemonicParsing="false" onAction="#MoveButtonClicked" style="-fx-background-color: #ff9b04;" text="Weekly Mode">
          <font>
-            <Font size="11.0" />
+            <Font name="Berlin Sans FB" size="12.0" />
          </font>
       </Button>
    </children>
