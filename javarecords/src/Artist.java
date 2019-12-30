@@ -98,7 +98,7 @@ public class Artist extends Person {
 	}
 	
 	public static void LivePopularity() {
-		double attendance = Performance.sales / Performance.price;
+		double attendance = Performance.ticketSales / Performance.ticketPrice;
 		System.out.println("While the venue has capacity of " 
 				+ Venue.getcapacity() + "people, the number of people that actually attended is "
 				+ attendance);		
