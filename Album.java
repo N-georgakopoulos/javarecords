@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-/* import Song; best to leave Album recording score as is and not receive data from Song class */ 
 import Performance;
 
 public class Album {
 	
 	//variables of album
-	private String name
+	private String name;
 	private double pricep;
 	private double priced;
 	private double physical;
@@ -63,14 +61,16 @@ public class Album {
 		double revenue = physical * pricep + digital * priced;
 		return revenue;
 	}
-	// Generate empty Arraylist of Song objects so that Production can add Songs to Albums
-	ArrayList<Song> AlbumSongs = new ArrayList<Song>(); 
+	
+	//Table Songs
+	String[] Songs;
+	int NumberOfSongs = Songs.length;
 	
 	// Album recording score 
-	int NumberOfSongs = AlbumSongs.size();
 	public double RecordingScore(physical, digital, NumberOfSongs) {
 		double recScore = (0.1 * physical + 0.9 * digital) / NumberOfSongs ;
-		return recScore ;
+		recScore = recScore * 100;
+		return recScore;
 	}
 	
 	// Album live score
@@ -80,7 +80,6 @@ public class Album {
 	// Album Profit Score
 	public double ProfitScore(recScore, liveScore) {
 		double prScore = 0.5 * recScore + 0.5 * liveScore;
-		return prScore
+		return prScore;
 	}
 }
-	
