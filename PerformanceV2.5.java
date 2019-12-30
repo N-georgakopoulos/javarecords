@@ -7,7 +7,6 @@ public class Performance {
 	private static String AlbumPlayed1;
 	private static String AlbumPlayed2;
 	
-	private static int distanceVenueArtist = Venue.getdistanceVenueArtist();
 
 public Performance(String venue, double price, double sales, String album1, String album2) { //Creates Performance Object
 	this.Venue = venue;
@@ -16,6 +15,8 @@ public Performance(String venue, double price, double sales, String album1, Stri
 	this.AlbumPlayed1 = album1;
 	this.AlbumPlayed2 = album2;
 }
+
+ 
 
 public static double calculateProjectedRevenue(double price, double sales) {
 	double revenue = 0;
@@ -27,12 +28,13 @@ public static double calculateProjectedRevenue(double price, double sales) {
 	} catch (IllegalArgumentException e) {
 		System.out.println(e.getMessage());
 	}
-	cut = Venue.getcut();
+	cut = Performance.Venue.getcut();
 	revenue = revenue - (revenue * cut);
 	return revenue;
 }
 
-	public static double calculateCost(distanceVenueArtist){
+	public static double calculateCost(){
+		int distanceVenueArtist = Performance.Venue.getdistanceVenueArtist();
 		double cost = 0;
 		try {
 			double CostOfTravel = (distanceVenueArtist/10)*3;
@@ -55,7 +57,7 @@ public static double calculateProjectedRevenue(double price, double sales) {
 	}
 	
 	public static double getLiveScore(){
-		int capacity = Venue.getcapacity();
+		int capacity = Performance.Venue.getcapacity();
 		double LiveScore = 0;
 		if (capacity <= 1000) {
 			LiveScore = (Performance.ticketSales / capacity) * 0.7 * 100;
@@ -69,7 +71,7 @@ public static double calculateProjectedRevenue(double price, double sales) {
 
 	public static double ProfitPerAlbum(){
 	 	double revenue = Performance.calculateProjectedRevenue(Performance.ticketPrice, Performance.ticketSales);
-		double cost = Performance.calculateCost(distanceVenueArtist);
+		double cost = Performance.calculateCost();
 		double profit = calculateProjectedProfit(revenue,cost);
 		double score1 = 0;
 		double score2 = 0;
