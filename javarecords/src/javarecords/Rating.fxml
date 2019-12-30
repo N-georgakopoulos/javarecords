@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rating">
    <children>
       <Button layoutX="82.0" layoutY="37.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="735.0" style="-fx-background-color: #333333;" textFill="#1c1c1c" />
-      <ImageView fitHeight="81.0" fitWidth="72.0" layoutX="167.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="81.0" fitWidth="72.0" layoutX="168.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Pictures/female%20icon.jpg" />
          </image>

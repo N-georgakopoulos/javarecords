@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 public class Rating {
 	ArrayList<Artist> artists = new ArrayList<Artist>();
 	
+	
 	@FXML
 	TableView tbl = new TableView();
 	@FXML TableColumn sthlh1;
@@ -95,4 +96,5 @@ public void initialize(URL arg0,ResourceBundle arg1) {
 public void fillObjects() {
 	
 }
+
 }
