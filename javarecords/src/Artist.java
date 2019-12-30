@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class Artist extends Person {
 	static Scanner sc = new Scanner(System.in);
 	ArrayList<String> wannabeAlbum = new ArrayList<String>();
+	String imgPerson;
 	private double rating;
-	private double relevancyIndex;
-	
+	private double relevancyIndex;	
 	private String genre;
-	private double payPercentage;
+	private double payPercentage; 
 	
 	public Artist(String username, String password, double rating, double relevancyIndex, Album[] albums,
-			String genre, double payPercentage) {
+			String genre, double payPercentage, String imgPerson) {
 		super(username,password);
 		this.username = username;
 		this.password = password;
@@ -77,25 +77,17 @@ public class Artist extends Person {
 	}
 	
 	public void showRatings() {
-		for (int p = 0; p < Album.size(); p++) {
-			System.out.println("The popularity of each song by artist " + username + "is: " + Song.Popularity(p)); //p η σειρα του καθε τραγουδιου//
-			}
-		for (int l =0; l < numberOfAlbums; l++) {
-			System.out.println("The popularity of each album by artist " + username + "is: " +  Album.getPopularity);
+		for (int l =0; l < numberOfAlbumsByAnArtist; l++) {
+			System.out.println("The popularity of each album by artist " + username + "is: " +  Album.AlbumSales());
 		}
 	}
 	
 	public double popularityOfAlbums() {
 		double allAlbumsPopularity = 0;
-		for(int i = 1; i <= numberOfAlbums; i++) {
-			allAlbumsPopularity += Album.getPopularity();
-		}
-		for (int o = 0; o < Album.size(); o++) {
-			
-		}
-		
-		
-		double pop = albumPopularity/numberOfAlbums; //χρηση του σταθμισμενου μεσου ορου//
+		for(int i = 1; i <= numberOfAlbumsByAnArtist; i++) {
+			allAlbumsPopularity += Album.AlbumSales();
+		}				
+		double pop = albumPopularity/numberOfAlbumsByAnArtist;
 		return pop;
 	}
 	
@@ -111,6 +103,13 @@ public class Artist extends Person {
 				+ Venue.getcapacity() + "people, the number of people that actually attended is "
 				+ attendance);		
 	}
+	
+	/*public double ArtistScore() {
+		ArrayList<Double> score = new ArrayList<Double>();               
+		ArrayList<String> name = new ArrayList<String>();                -logika xreiazetai sto gui-
+		ArrayList<Integer> place = new ArrayList<Integer>();
+				
+	}*/
 	
 }
 
