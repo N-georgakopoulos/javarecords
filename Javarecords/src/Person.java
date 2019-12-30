@@ -2,7 +2,7 @@
 
 public class Person {
 	protected String username;
-	protected String password;
+	private String password;
 	static private int id;
 	
 	public Person(String username, String password) {
@@ -12,7 +12,7 @@ public class Person {
 		Person.id=id++; //If this was : this.id=id++ there would have been "field should be accessed in a static way" error ask @N-georgakopoulos
 	}
 
-	public String getUsername() {
+	public String getUsername() { 
 		return username;
 	}
 

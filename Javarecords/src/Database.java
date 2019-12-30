@@ -235,7 +235,7 @@ public class Database {
 			System.out.println(e);
 		}
 		return Albums;
-	}
+	} 
 
 //METHOD TO FILL THE DATABASE TABLES
 	

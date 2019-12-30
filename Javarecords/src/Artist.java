@@ -13,7 +13,7 @@ public class Artist extends Person {
 
 	public Artist(String username, String password, double rating, double relevancyIndex, ArrayList<Album> albums,
 			String genre, double payPercentage) {
-		super(username, password);
+		super(username, password); 
 		this.username = username;
 		this.password = password;
 		this.rating = rating;

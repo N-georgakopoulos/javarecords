@@ -10,7 +10,7 @@ public class Album {
 	double liveScore = Performance.getLiveScore()/NumberOfSongs;
 	// variables of album
 	private String name;
-	private double pricep;
+	private double pricep; 
 	private double priced;
 	private double physical;
 	private double digital;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Manager extends Person {
 	
-	Scanner sc=new Scanner(System.in);
+	Scanner sc=new Scanner(System.in); 
 	protected ArrayList<Artist> Artists = new ArrayList<Artist>();//dont delete this
 	
 	
