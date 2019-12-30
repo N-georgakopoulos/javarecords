@@ -24,6 +24,6 @@ public class Controller {
 		int price2 = Integer.parseInt(price);
 		String sales = ticketSales.getText();
 		int sales2 = Integer.parseInt(sales);
-		Performance a = new Performance(venue.getText(),price2,sales2,AlbumPlayed1.getText(),AlbumPlayed2.getText());
+		Performance PerformanceA = new Performance(venue.getText(),price2,sales2,AlbumPlayed1.getText(),AlbumPlayed2.getText());
 	}
 }
