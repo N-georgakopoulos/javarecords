@@ -68,7 +68,7 @@ public class Album {
 	
 	// Album recording score 
 	public double RecordingScore(physical, digital, NumberOfSongs) {
-		double recScore = (0.1 * physical + 0.9 * digital) / NumberOfSongs ;
+		double recScore = (0.1 * physical + 0.9 * digital) / NumberOfSongs;
 		recScore = recScore * 100;
 		return recScore;
 	}
