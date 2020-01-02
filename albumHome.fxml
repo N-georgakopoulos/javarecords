@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="500.0" maxWidth="899.0" minHeight="500.0" minWidth="899.0" prefHeight="500.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="83.0" prefWidth="899.0" style="-fx-background-color: #333333;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="10.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/orange/icons8-music-folder-50.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="16.0" prefHeight="48.0" prefWidth="123.0" text="ALBUM" textFill="WHITE">
+               <font>
+                  <Font name="Gadugi" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="38.0" fitWidth="37.0" layoutX="579.0" layoutY="31.0">
+               <image>
+                  <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/white/icons8-search-more-50.png" />
+               </image>
+            </ImageView>
+            <TextField alignment="BOTTOM_LEFT" layoutX="627.0" layoutY="41.0" prefHeight="26.0" prefWidth="237.0" promptText="Search" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="100.0" prefHeight="401.0" prefWidth="899.0" style="-fx-background-color: #333333;">
+         <children>
+            <AnchorPane layoutX="65.0" layoutY="25.0" prefHeight="335.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="48.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="96.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="144.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="192.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="240.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+                  <BorderPane layoutY="288.0" prefHeight="48.0" prefWidth="200.0" style="-fx-border-color: #ffffff;" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="456.0" layoutY="16.0" prefHeight="365.0" prefWidth="369.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="112.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="123.0" fitWidth="123.0">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/1/images%20(30).jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/7/download%20(7).jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/7/download%20(6).jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="246.0" fitWidth="246.0" layoutX="124.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/10/download%20(9).jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="246.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/10/download%20(8).jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="123.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../OneDrive/Υπολογιστής/Java%20Records/logos/album/2/images%20(29).jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ButtonBar layoutX="284.0" layoutY="328.0" prefHeight="50.0" prefWidth="143.0">
+               <buttons>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="All albums" wrappingWidth="67.35025787353516" />
+                  <ImageView fitHeight="50.0" fitWidth="45.0">
+                     <image>
+                        <Image url="@icons8-music-library-50.png" />
+                     </image>
+                  </ImageView>
+               </buttons>
+            </ButtonBar>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-2.0" layoutY="82.0" prefHeight="18.0" prefWidth="580.0" style="-fx-background-color: #FF9B04;" />
+   </children>
+</AnchorPane>

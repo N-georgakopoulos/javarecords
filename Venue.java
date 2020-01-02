@@ -4,8 +4,6 @@ public class Venue {
 	private int capacity;
 	private String OrganizerName;
 	private int OrganizerPhone;
-	private String type; /*eg festival, ballroom, tour etc*/
-	private String style; /*indoors, outdoors*/
 	private String location; /*address*/
 	private double clean;
 	private double install;
