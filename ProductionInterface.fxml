@@ -157,5 +157,10 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="euro" layoutX="794.0" layoutY="430.0" prefHeight="34.0" prefWidth="64.0" textFill="#1c1c1c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
