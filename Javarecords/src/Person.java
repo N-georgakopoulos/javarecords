@@ -2,7 +2,7 @@
 
 public class Person {
 	protected String username;
-	private String password;
+	protected String password;
 	static private int id;
 	
 	public Person(String username, String password) {

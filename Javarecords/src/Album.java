@@ -2,26 +2,50 @@ import java.util.ArrayList;
 /* import Song; best to leave Album recording score as is and not receive data from Song class */
 
 public class Album {
-	// Generate empty Arraylist of Song objects so that Production can add Songs to Albums
-	ArrayList<Song> AlbumSongs = new ArrayList<Song>(); 
-	// Album recording score 
+	// Generate empty Arraylist of Song objects so that Production can add Songs to
+	// Albums
+	ArrayList<String> AlbumSongs = new ArrayList<String>();
+	// Album recording score
 	private int NumberOfSongs = AlbumSongs.size();
-	//requesting live performance score of an album
-	double liveScore = Performance.getLiveScore()/NumberOfSongs;
+	// requesting live performance score of an album
+	double liveScore = Performance.getLiveScore() / NumberOfSongs;
 	// variables of album
-	private String name;
-	private double pricep; 
+	private String albumname;
+	private double pricep;
 	private double priced;
-	private double physical;
-	private double digital;
+	private int physical;
+	private int digital;
+	private int completed;
+	
+	public Album(ArrayList<String> albumSongs, String albumname, double pricep, double priced, int physical,
+			int digital, int completed) {
+		super();
+		AlbumSongs = albumSongs;
+		this.albumname = albumname;
+		this.pricep = pricep;
+		this.priced = priced;
+		this.physical = physical;
+		this.digital = digital;
+		this.completed = completed;
+	}
+
+
 
 	// setters and getters
+	public ArrayList<String> getAlbumSongs() {
+		return AlbumSongs;
+	}
+
+	public void setAlbumSongs(ArrayList<String> albumSongs) {
+		AlbumSongs = albumSongs;
+	}
+
 	public void setname(String AlbumName) {
-		this.name = AlbumName;
+		this.albumname = AlbumName;
 	}
 
 	public String getname() {
-		return this.name;
+		return this.albumname;
 	}
 
 	public void setpricep(double pricephy) {
@@ -40,7 +64,7 @@ public class Album {
 		return this.priced;
 	}
 
-	public void setphysical(double physic) {
+	public void setphysical(int physic) {
 		this.physical = physic;
 	}
 
@@ -48,13 +72,13 @@ public class Album {
 		return this.physical;
 	}
 
-	public void setdigital(double digit) {
+	public void setdigital(int digit) {
 		this.digital = digit;
 	}
 
 	public double getdigital() {
-        return this.digital;
-    }
+		return this.digital;
+	}
 
 	// Album sales
 	public double AlbumSales() {
@@ -68,19 +92,18 @@ public class Album {
 		return revenue;
 	}
 
-	
 	public double RecordingScore() {
-		double recScore = (0.1 * physical + 0.9 * digital) / NumberOfSongs ;
-		return recScore ;
+		double recScore = (0.1 * physical + 0.9 * digital) / NumberOfSongs;
+		return recScore;
 	}
-	
+
 	// Album live score
-	//*
-	//liveScore = liveScore / NumberOfSongs;
-	
+	// *
+	// liveScore = liveScore / NumberOfSongs;
+
 	// Album Profit Score
-	//public double ProfitScore(recScore, liveScore) {
-	//	double prScore = 0.5 * recScore + 0.5 * liveScore;
-	//	return prScore;
-	//}
+	// public double ProfitScore(recScore, liveScore) {
+	// double prScore = 0.5 * recScore + 0.5 * liveScore;
+	// return prScore;
+	// }
 }

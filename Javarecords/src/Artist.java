@@ -8,19 +8,25 @@ public class Artist extends Person {
 	private double relevancyIndex;
 	// Albums=Database.viewAlbum();//fills arraylist albums with albums from the
 	// databse
+	private int id;
+	private static int count=0;
 	private String genre;
 	private double payPercentage;
 
-	public Artist(String username, String password, double rating, double relevancyIndex, ArrayList<Album> albums,
+	public Artist(int id, String username, String password, double rating, double relevancyIndex, ArrayList<Album> albums,
 			String genre, double payPercentage) {
-		super(username, password); 
+		super(username, password);
 		this.username = username;
 		this.password = password;
 		this.rating = rating;
 		this.relevancyIndex = relevancyIndex;
-		this.albums = albums;
+		this.Albums = Albums;
 		this.genre = genre;
 		this.payPercentage = payPercentage;
+		id=count;
+		count++;
+		this.id=id;
+		
 	}
 
 	public ArrayList<Album> getAlbums() {// dont delete this
@@ -70,23 +76,23 @@ public class Artist extends Person {
 	}
 
 	// Artist creates list of songs/wannabe album that he has in mind to create//
-	public ArrayList<String> registerAlbum() {
+	public void registerAlbum() {
 		System.out.println("Insert album name: ");
-		String name = sc.nextLine();
-		wannabeAlbum.add(name); // first line of list is the album name//
+		String albumname = sc.nextLine();
+		Database dat = null;
+		dat.addsAlbums(albumname, 0, 0, 0, 0);// creates a new halfdone album
 		String answer = "no";
 		do {
 			System.out.println("Insert song name: ");
-			name = sc.nextLine();
-			wannabeAlbum.add(name);
+			String songname = sc.nextLine();
+			dat.addsSongs(songname, albumname);// adds songs to the album
 			System.out.println("Insert another song name, yes or no;");
 			answer = sc.nextLine();
 		} while (answer == "yes");
-		return wannabeAlbum;
 	}
 
 	public void showRatings() {
-		for (int p = 0; p < Album.size(); p++) {
+		for (int p = 0; p < Albums.size(); p++) {
 			System.out.println("The popularity of each song by artist " + username + "is: " + Song.Popularity(p)); // p
 																													// η
 																													// σειρα
@@ -94,21 +100,21 @@ public class Artist extends Person {
 																													// καθε
 																													// τραγουδιου//
 		}
-		for (int l = 0; l < numberOfAlbums; l++) {
+		for (int l = 0; l <  Albums.size(); l++) {
 			System.out.println("The popularity of each album by artist " + username + "is: " + Album.getPopularity);
 		}
 	}
 
 	public double popularityOfAlbums() {
 		double allAlbumsPopularity = 0;
-		for (int i = 1; i <= numberOfAlbums; i++) {
+		for (int i = 1; i <=  Albums.size(); i++) {
 			allAlbumsPopularity += Album.getPopularity();
 		}
-		for (int o = 0; o < Album.size(); o++) {
+		for (int o = 0; o < Albums.size(); o++) {
 
 		}
 
-		double pop = albumPopularity / numberOfAlbums; // χρηση του σταθμισμενου μεσου ορου//
+		double pop = albumPopularity /  Albums.size(); // χρηση του σταθμισμενου μεσου ορου//
 		return pop;
 	}
 
