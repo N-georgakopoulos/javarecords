@@ -34,13 +34,11 @@ public class Database {
 							+ "                           venuename char(30),\r\n"
 							+ "						      distanceVenueArtist int,\r\n"
 							+ "						      OrganizerName char(30),\r\n"
-							+ "                           Ventype char(50),\r\n"
-							+ "                           style char(50),\r\n"
 							+ "                           location char (20),\r\n"
-							+ "                           clean char(30),\r\n"
-							+ "                           veninstall char(20),\r\n"
+							+ "                           clean decimal(10,2),\r\n"
+							+ "                           veninstall decimal(10,2),\r\n"
 							+ "                           duration int,\r\n"
-							+ "                           cut char(20),\n\n"
+							+ "                           cut decimal(10,2),\n\n"
 							+ "                           PRIMARY KEY (venueid))");// create listOfVenues table
 			PreparedStatement createlistOfManagers = con
 					.prepareStatement("CREATE TABLE IF NOT EXISTS listOfManagers( managerid int,\r\n"
@@ -54,6 +52,7 @@ public class Database {
 							+ "                                   physical int,\r\n"
 							+ "                                   digital int,\r\n"
 							+ "                                   artistid int,\r\n"
+							+ "                                   completed int,\r\n"
 							+ "                                   PRIMARY KEY (albumName),"
 							+ "                                   FOREIGN KEY (artistid) REFERENCES Artist(artistid))");// create
 																														// Albums
@@ -115,23 +114,21 @@ public class Database {
 	}
 
 	public static void addsVenues(int venueid, String venuename, int distanceVenueArtist, String OrganizerName,
-			String Ventype, String style, String location, String clean, String veninstall, int duration, String cut) {// inserts
+			String location, double clean, double veninstall, int duration, double cut) {// inserts
 																														// new
 																														// venues
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO listOfVenues(venueid, venuename, distanceVenueArtist, OrganizerName, Ventype, style, location, clean, veninstall, duration, cut) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO listOfVenues(venueid, venuename, distanceVenueArtist, OrganizerName, location, clean, veninstall, duration, cut) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			statement.setInt(1, venueid);// adds venueid
 			statement.setString(2, venuename);// addes venuename
 			statement.setInt(3, distanceVenueArtist);// adds distanceVenueArtist
 			statement.setString(4, OrganizerName);// adds OrganizerName
-			statement.setString(5, Ventype);// adds Ventype
-			statement.setString(6, style);// adds style
-			statement.setString(7, location);// addes location
-			statement.setString(8, clean);// adds clean
-			statement.setString(9, veninstall);// adds veninstall
-			statement.setInt(10, duration);// addes duration
-			statement.setString(11, cut);// adds cut
+			statement.setString(5, location);// addes location
+			statement.setDouble(6, clean);// adds clean
+			statement.setDouble(7, veninstall);// adds veninstall
+			statement.setInt(8, duration);// addes duration
+			statement.setDouble(9, cut);// adds cut
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
@@ -140,17 +137,18 @@ public class Database {
 		}
 	}
 
-	public static void addsAlbums(String albumName, double pricep, double priced, int physical, int digital) {// inserts
+	public static void addsAlbums(String albumName, double pricep, double priced, int physical, int digital,int completed) {// inserts
 																												// new
 																												// albums
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO Albums(albumName, pricep, priced, physical, digital) VALUES(?,?,?,?,?)");
+					"INSERT INTO Albums(albumName, pricep, priced, physical, digital, completed) VALUES(?,?,?,?,?,?)");
 			statement.setString(1, albumName);// adds albumName
 			statement.setDouble(2, pricep);// adds pricep
 			statement.setDouble(3, priced);// adds priced
 			statement.setInt(4, physical);// adds physical
 			statement.setInt(5, digital);// adds digital
+			statement.setInt(6, completed);// adds completed
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
@@ -180,12 +178,12 @@ public class Database {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM Albums");
 			ResultSet result = statement.executeQuery();
-			Artist art;
+			Artist art=null;
 			art.getAlbums().clear();// emptying Albums arraylist to update it
 			Album album;
 			while (result.next()) {
-				album = new Album(result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
-						result.getInt("physical"), result.getInt("digital"));// TODO constructor Album
+				album = new Album(findWhichSongs(result.getString("albumName")),result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
+						result.getInt("physical"), result.getInt("digital"),result.getInt("completed"));// TODO constructor Album
 				art.getAlbums().add(album);// adds new album to the Albums arraylist
 			}
 			System.out.println("Done!");
@@ -199,7 +197,7 @@ public class Database {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM Artists");
 			ResultSet result = statement.executeQuery();
-			Manager man;
+			Manager man=null;
 			man.getArtists().clear();// emptying Artists arraylist to update it
 			Artist art;
 			while (result.next()) {
@@ -214,6 +212,21 @@ public class Database {
 		}
 	}
 
+	public static void viewSongs() {
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM Songs");
+			ResultSet result = statement.executeQuery();
+			Album alb = null;//???
+			alb.getAlbumSongs().clear();// emptying Songs arraylist to update it
+			while (result.next()) {
+				alb.getAlbumSongs().add(result.getString("songname"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	
 
 //METHODS TO FIND STAFFS FROM DATABASES TABLES
@@ -227,8 +240,8 @@ public class Database {
 			ResultSet result = statement.executeQuery();
 			Album album;
 			while (result.next()) {
-				album = new Album(result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
-						result.getInt("physical"), result.getInt("digital"));
+				album = new Album(findWhichSongs(result.getString("albumName")),result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
+						result.getInt("physical"), result.getInt("digital"),result.getInt("completed"));
 				Albums.add(album);
 			}
 		} catch (Exception e) {
@@ -237,13 +250,30 @@ public class Database {
 		return Albums;
 	} 
 
+	public static ArrayList<String> findWhichSongs(String albumName){
+		ArrayList<String> Songs = new ArrayList<String>();// temp songs arraylist
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement(
+					"SELECT songname, albumName FROM Songs,Albums WHERE Songs.albumName=ALbum.albumName");
+			ResultSet result = statement.executeQuery();
+			String song;
+			while (result.next()) {
+				song= new String(result.getString("songname"));
+				Songs.add(song);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return Songs;
+	}
+	
 //METHOD TO FILL THE DATABASE TABLES
 	
 	public static void startInserts() {// adds staffs to the database tables
-		addsAlbums("rock", 2.4, 5.86, 345, 4366);
+		addsAlbums("rock", 2.4, 5.86, 345, 4366, 0);
 		addsArtists(1,"eminem","123efvwv",213.23,1244.55,"rock",14.4,"RAP GOD");
-		addsVenues(6, "ROCK FESTIVAL", 2000 , "ELA POIOS",
-				"YOLO", "ROCK FISIKA" , "PANTOYYY NTOY","????", "?????????", 120, "??????????????");
+		addsVenues(1, "rockfestival", 505, "mitsos", "SKG", 15.6, 16.6, 13, 13.8);
 		addsSongs("TA MATOKLADA SOU LAMPOUN", "rock");
 	}
 	
