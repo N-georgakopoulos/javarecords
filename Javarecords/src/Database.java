@@ -19,14 +19,10 @@ public class Database {
 		try {
 			Connection con = getConnection();
 			PreparedStatement createArtists = con.prepareStatement("CREATE TABLE IF NOT EXISTS  Artists(\n"
-					+ "    artistid int,\n" 
-					+ "    username char(30) NOT NULL,\n"  
-					+ "    password char(30),\n"
-					+ "    rating decimal(10,2),\n " 
-					+ "    relevancyIndex decimal(10,2),\n" 
-					+ "    genre char(20),\n"
-					+ "    payPercentage decimal(10,2)\n," 
-					+ "    img char(30)\n,"
+					+ "    artistid int,\n" + "    username char(30) NOT NULL,\n" + "    password char(30),\n"
+					+ "    rating decimal(10,2),\n " + "    relevancyIndex decimal(10,2),\n" + "    genre char(20),\n"
+					+ "    payPercentage decimal(10,2)\n," + "    managerid int\n,"
+					+ "     FOREIGN KEY (managerid) REFERENCES Managers(managerid),\n"
 					+ "    PRIMARY KEY (artistid))\n\n");// create Artists table
 
 			PreparedStatement createlistOfVenues = con
@@ -40,8 +36,8 @@ public class Database {
 							+ "                           duration int,\r\n"
 							+ "                           cut decimal(10,2),\n\n"
 							+ "                           PRIMARY KEY (venueid))");// create listOfVenues table
-			PreparedStatement createlistOfManagers = con
-					.prepareStatement("CREATE TABLE IF NOT EXISTS listOfManagers( managerid int,\r\n"
+			PreparedStatement createManagers = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Managers( managerid int,\r\n"
 							+ "							 username char(30),\r\n"
 							+ "							 managerpassword char(50),\r\n"
 							+ "                          PRIMARY KEY (managerid))");// create listOfManagers table
@@ -63,12 +59,24 @@ public class Database {
 							+ "								 FOREIGN KEY(albumName) REFERENCES Albums(albumName))");// create
 																													// Songs
 																													// table
+			PreparedStatement createPartners = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Partners(partname char(20),\r\n"
+							+ "								    attribute char(30),\r\n"
+							+ "                                    payPerHour decimal(10,2),\r\n"
+							+ "                                    PRIMARY KEY (partname)");//create Partner Table
+
+			PreparedStatement createStudios = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Studios(studioname char(30),\r\n"
+							+ "								   pricePerHour decimal(10,2),\r\n"
+							+ "                                   PRIMARY KEY (studioname)");//create Studios table
 
 			createArtists.executeUpdate();
 			createlistOfVenues.executeUpdate();
-			createlistOfManagers.executeUpdate();
+			createManagers.executeUpdate();
 			createAlbums.executeUpdate();
 			createSongs.executeUpdate();
+			createPartners.executeUpdate();
+			createStudios.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Something went wrong :(");
 		}
@@ -78,10 +86,10 @@ public class Database {
 	// ADDING METHODS
 
 	public static void addsArtists(int artistid, String username, String password, double rating, double relevancyIndex,
-			 String genre, double payPercentage, String img) {// inserts new artists
+			String genre, double payPercentage, int managerid) {// inserts new artists
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO Artists(artistid,username,password,rating,relevancyIndex,genre,payPercentage,img) VALUES (?,?,?,?,?,?,?,?)");
+					"INSERT INTO Artists(artistid,username,password,rating,relevancyIndex,genre,payPercentage,managerid) VALUES (?,?,?,?,?,?,?,?)");
 			statement.setInt(1, artistid);// adds artistid
 			statement.setString(2, username);// addes username
 			statement.setString(3, password);// adds password
@@ -89,7 +97,7 @@ public class Database {
 			statement.setDouble(5, relevancyIndex);// adds relevancyIndex
 			statement.setString(6, genre);// adds genre
 			statement.setDouble(7, payPercentage);// addes payPercentage
-			statement.setString(8, img);// adds img
+			statement.setInt(8, managerid);// adds managerid
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
@@ -97,11 +105,11 @@ public class Database {
 			System.out.println("Could not add artist to database because it already exists :(");
 		}
 	}
-	
-	public static void addsManagers(int managerid, String username, String password) {//inserts new managers
+
+	public static void addsManagers(int managerid, String username, String password) {// inserts new managers
 		try {
-			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO listOfManagers(managerid,username,password) VALUES(?,?,?)");
+			PreparedStatement statement = (PreparedStatement) getConnection()
+					.prepareStatement("INSERT INTO Managers(managerid,username,password) VALUES(?,?,?)");
 			statement.setInt(1, managerid);// adds managerid
 			statement.setString(2, username);// addes username
 			statement.setString(3, password);// adds password
@@ -115,8 +123,8 @@ public class Database {
 
 	public static void addsVenues(int venueid, String venuename, int distanceVenueArtist, String OrganizerName,
 			String location, double clean, double veninstall, int duration, double cut) {// inserts
-																														// new
-																														// venues
+																							// new
+																							// venues
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
 					"INSERT INTO listOfVenues(venueid, venuename, distanceVenueArtist, OrganizerName, location, clean, veninstall, duration, cut) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
@@ -137,9 +145,10 @@ public class Database {
 		}
 	}
 
-	public static void addsAlbums(String albumName, double pricep, double priced, int physical, int digital,int completed) {// inserts
-																												// new
-																												// albums
+	public static void addsAlbums(String albumName, double pricep, double priced, int physical, int digital,
+			int completed) {// inserts
+		// new
+		// albums
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
 					"INSERT INTO Albums(albumName, pricep, priced, physical, digital, completed) VALUES(?,?,?,?,?,?)");
@@ -178,12 +187,13 @@ public class Database {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM Albums");
 			ResultSet result = statement.executeQuery();
-			Artist art=null;
+			Artist art = null;
 			art.getAlbums().clear();// emptying Albums arraylist to update it
 			Album album;
 			while (result.next()) {
-				album = new Album(findWhichSongs(result.getString("albumName")),result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
-						result.getInt("physical"), result.getInt("digital"),result.getInt("completed"));// TODO constructor Album
+				album = new Album(findWhichSongs(result.getString("albumName")), result.getString("albumName"),
+						result.getDouble("pricep"), result.getDouble("priced"), result.getInt("physical"),
+						result.getInt("digital"), result.getInt("completed"));// TODO constructor Album
 				art.getAlbums().add(album);// adds new album to the Albums arraylist
 			}
 			System.out.println("Done!");
@@ -192,12 +202,12 @@ public class Database {
 		}
 	}
 
-	public static void viewArtists() {
+	public static void viewAllArtists() {
 		try {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM Artists");
 			ResultSet result = statement.executeQuery();
-			Manager man=null;
+			Manager man = null;
 			man.getArtists().clear();// emptying Artists arraylist to update it
 			Artist art;
 			while (result.next()) {
@@ -217,17 +227,39 @@ public class Database {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM Songs");
 			ResultSet result = statement.executeQuery();
-			Album alb = null;//???
+			Album alb = null;// ???
 			alb.getAlbumSongs().clear();// emptying Songs arraylist to update it
 			while (result.next()) {
 				alb.getAlbumSongs().add(result.getString("songname"));
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
+
+	public static ArrayList<Artist> viewManagersArtist(int managerid) {// shows all the artists of each manager
+		ArrayList<Artist> managersArtists = new ArrayList<Artist>();
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("SELECT * FROM Artists WHERE " + managerid + "=Artists.managerid");
+			ResultSet result = statement.executeQuery();
+			Manager man = null;
+			man.getArtists().clear();// emptying Artists arraylist to update it
+			Artist art;
+			while (result.next()) {
+				art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+						result.getDouble("rating"), result.getDouble("relevancyIndex"),
+						findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
+						result.getDouble("payPercentage"));
+				managersArtists.add(art);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return managersArtists;
+	}
 
 //METHODS TO FIND STAFFS FROM DATABASES TABLES
 
@@ -240,17 +272,18 @@ public class Database {
 			ResultSet result = statement.executeQuery();
 			Album album;
 			while (result.next()) {
-				album = new Album(findWhichSongs(result.getString("albumName")),result.getString("albumName"), result.getDouble("pricep"), result.getDouble("priced"),
-						result.getInt("physical"), result.getInt("digital"),result.getInt("completed"));
+				album = new Album(findWhichSongs(result.getString("albumName")), result.getString("albumName"),
+						result.getDouble("pricep"), result.getDouble("priced"), result.getInt("physical"),
+						result.getInt("digital"), result.getInt("completed"));
 				Albums.add(album);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return Albums;
-	} 
+	}
 
-	public static ArrayList<String> findWhichSongs(String albumName){
+	public static ArrayList<String> findWhichSongs(String albumName) {
 		ArrayList<String> Songs = new ArrayList<String>();// temp songs arraylist
 		try {
 			Connection con = getConnection();
@@ -259,7 +292,7 @@ public class Database {
 			ResultSet result = statement.executeQuery();
 			String song;
 			while (result.next()) {
-				song= new String(result.getString("songname"));
+				song = new String(result.getString("songname"));
 				Songs.add(song);
 			}
 		} catch (Exception e) {
@@ -267,16 +300,17 @@ public class Database {
 		}
 		return Songs;
 	}
-	
+
 //METHOD TO FILL THE DATABASE TABLES
-	
+
 	public static void startInserts() {// adds staffs to the database tables
 		addsAlbums("rock", 2.4, 5.86, 345, 4366, 0);
-		addsArtists(1,"eminem","123efvwv",213.23,1244.55,"rock",14.4,"RAP GOD");
+		addsArtists(1, "eminem", "123efvwv", 213.23, 1244.55, "rock", 14.4, 1);
 		addsVenues(1, "rockfestival", 505, "mitsos", "SKG", 15.6, 16.6, 13, 13.8);
 		addsSongs("TA MATOKLADA SOU LAMPOUN", "rock");
+		addsManagers(1, "ela poios", "21e dewcdwe");
 	}
-	
+
 //CONNECTION METHOD
 
 	public static Connection getConnection() throws Exception {// connecting to database
