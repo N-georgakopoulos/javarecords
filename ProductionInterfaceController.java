@@ -66,6 +66,8 @@ public class ProductionInterfaceController {
 	private Button submit;
 	@FXML
 	private Label result;
+	@FXML
+	private Label euro;
 	
 	Studio st1 = new Studio("Bashment studio", 45.0);
 	Studio st2 = new Studio("Studio Grand", 60.0);
@@ -79,15 +81,17 @@ public class ProductionInterfaceController {
 	Partner lp1 = new Partner("Linda Mae", "berhfvijlkgt", "lyricist", 50.0);
 	Partner lp2 = new Partner("Cinda Cae", "berhfvijl", "lyricist", 50.0);
 	Partner lp3 = new Partner("Dinda Dae", "berhfvijlk", "lyricist", 50.0);
+	Partner[] lyricistArray = {lp1, lp2, lp3};
 	Partner pp1 = new Partner("Dave D", "berhfvijlkgt", "producer", 50.0);
 	Partner pp2 = new Partner("Dave F", "berhfvijlkgt", "producer", 50.0);
 	Partner pp3 = new Partner("Dave Z", "berhfvijlkgt", "producer", 50.0);
+	Partner[] producerArray = {pp1, pp2, pp3};
 	Partner mp1 = new Partner("Kate Opere", "asdefr", "musician", 50.0);
 	Partner mp2 = new Partner("Kate Mae", "asdefr", "musician", 50.0);
 	Partner mp3 = new Partner("Kate Smith", "asdefr", "musician", 50.0);
 	Partner mp4 = new Partner("Kate J", "asdefr", "musician", 50.0);
 	Partner mp5 = new Partner("Kate Jones", "asdefr", "musician", 50.0);
-	Partner[] partnerArray = {lp1, lp2, lp3, pp1, pp2, pp3, mp1, mp2, mp3, mp4, mp5};
+	Partner[] musicianArray = {mp1, mp2, mp3, mp4, mp5};
 	
 	@FXML
 	private void initialize() {
@@ -114,22 +118,16 @@ public class ProductionInterfaceController {
 		for(int i = 0; i < composerArray.length; i++) {
 			chooseComposerList.add(composerArray[i].getUsername());
 		} //end for
-		for(int i = 0; i < partnerArray.length; i++) {
-			if(partnerArray[i].getAttribute() == "lyricist") {
-				chooseLyricistList.add(partnerArray[i].getUsername());
-			} //end if
+		for(int i = 0; i < lyricistArray.length; i++) {
+			chooseLyricistList.add(lyricistArray[i].getUsername());
 		} //end for
-		for(int i = 0; i < partnerArray.length; i++) {
-			if(partnerArray[i].getAttribute() == "producer") {
-				chooseProducerList.add(partnerArray[i].getUsername());
-			} //end if
+		for(int i = 0; i < producerArray.length; i++) {
+			chooseProducerList.add(producerArray[i].getUsername());
 		} //end for
-		for(int i = 0; i < partnerArray.length; i++) {
-			if(partnerArray[i].getAttribute() == "musician") {
-				chooseMusician1List.add(partnerArray[i].getUsername());
-				chooseMusician2List.add(partnerArray[i].getUsername());
-				chooseMusician3List.add(partnerArray[i].getUsername());
-			} //end if
+		for(int i = 0; i < musicianArray.length; i++) {
+				chooseMusician1List.add(musicianArray[i].getUsername());
+				chooseMusician2List.add(musicianArray[i].getUsername());
+				chooseMusician3List.add(musicianArray[i].getUsername());
 		} //end for
 		
 		composer.setItems(chooseComposerList);
@@ -181,18 +179,48 @@ public class ProductionInterfaceController {
 		} //end for
 		
 		for(int i = 0; i < composerArray.length; i++) {
-			if(composerArray[i].getUsername() == chooseStudio.getValue()) {
-				prod.addPartner(composerArray[i]);;
+			if(composerArray[i].getUsername() == composer.getValue()) {
+				prod.setPartner1(composerArray[i]);
 			}
 		} //end for
 		
-
+		for(int i = 0; i < lyricistArray.length; i++) {
+			if(lyricistArray[i].getUsername() == lyricist.getValue()) {
+				prod.setPartner2(lyricistArray[i]);
+			}
+		} //end for
+		
+		for(int i = 0; i < producerArray.length; i++) {
+			if(producerArray[i].getUsername() == producer.getValue()) {
+				prod.setPartner3(producerArray[i]);
+			}
+		} //end for
+		
+		for(int i = 0; i < musicianArray.length; i++) {
+			if(musicianArray[i].getUsername() == musician1.getValue()) {
+				prod.setPartner4(musicianArray[i]);
+			}
+		} //end for
+		
+		for(int i = 0; i < musicianArray.length; i++) {
+			if(musicianArray[i].getUsername() == musician2.getValue()) {
+				prod.setPartner5(musicianArray[i]);
+			}
+		} //end for
+		
+		for(int i = 0; i < musicianArray.length; i++) {
+			if(musicianArray[i].getUsername() == musician3.getValue()) {
+				prod.setPartner6(musicianArray[i]);
+			}
+		} //end for
 		
 		
 		//calculate and present cost	
 		double c = prod.productionCost();
 		String costString = String.valueOf(c);
 		result.setText(costString);
+		String e = "€";
+		euro.setText(e);
 			
 	} //end method handleSubmitButton
 
