@@ -1,63 +1,30 @@
-import java.util.Scanner;
+package application.executiveClasses;
+
+import java.util.ArrayList;
 
 public class Manager extends Person {
 	
-	Scanner sc=new Scanner(System.in);
-	Performance perf =new Performance();
-	public Manager(String username,String password) {
-		super(username,password);
-		this.username=username;
-		this.password=password;
+	ArrayList<Artist> artists = new ArrayList<Artist>();
+
+	public ArrayList<Artist> getArtists() {
+		return artists;
 	}
 
-	public void createPerformance() {
-		System.out.println("");
-		System.out.println(""");
-		System.out.println(Database.returnArtists());//shows artists
-		
+	public void setArtists(ArrayList<Artist> artists) {
+		this.artists = artists;
 	}
-	
-	public displayTimeline() {
-		
+
+	public Manager(String username, String password) {
+		super(username, password);
+
 	}
-	
-	public displayLeaderboard() {
-		
-	}
-	
-	public manageProduction() {
-		
-	}
-	
-	public void logIn() {
-		String[] givenCreds = this.askCredentials(); // keep in mind givenCreds[0] contains username ,givenCreds [1]
-														// contains password
-		boolean allGood = false; //checks if login is successful
-		while (!allGood) {
-			if (usernameExists()) { // TODO usernameExists which will lookup given username in DB
-				String realPass = lookUpPass(givenCreds[0]); // lookUpPass returns the correct password from DB for each
-																// username
-				if (realPass == givenCreds[1]) {
-					allGood = true;
-					break;
-				} else {
-					System.out.println("Incorrect password try again");
-					this.logIn(); 
-				}
-			}else {
-				System.out.println("Username was not found");
-				this.logIn();
-			}
+
+	public static void loadObj() {
+		Manager x = new Manager("", " ");
+		for (int i = 0; i < 5; i++) {
+			Album[] y = new Album[4];
+			Artist z = new Artist("", "", i, i, y, "", i, "");
+			x.artists.add(z);
 		}
 	}
-
-	public String[] askCredentials() {
-		System.out.println("Insert ur username");
-		String username = sc.nextLine();
-		System.out.println("Insert ur password");
-		String password = sc.nextLine();
-		String[] creds = { username, password };
-		return creds;
-	}
-	
 }
