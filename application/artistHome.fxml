@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.artistHomeController">
+   <children>
+      <Button layoutX="175.0" layoutY="236.0" mnemonicParsing="false" onAction="#showTimeline" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #FF9B04;" text="My timeline" />
+      <Button layoutX="633.0" layoutY="236.0" mnemonicParsing="false" onAction="#registerAlbum" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #FF9B04;" text="Register Album" />
+      <Circle fill="#ff9b04" layoutX="450.0" layoutY="250.0" radius="144.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="806.0" endY="382.0" layoutX="93.0" layoutY="129.0" startX="-92.99998474121094" startY="-118.0" stroke="#ff9b04" />
+      <Label layoutX="202.0" layoutY="27.0" prefHeight="50.0" prefWidth="310.0" text="Hello" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView layoutX="752.0" layoutY="248.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_music_record_26px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="116.0" layoutY="245.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_concert_day_32px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="artistNameTag" layoutX="257.0" layoutY="27.0" prefHeight="50.0" prefWidth="310.0" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

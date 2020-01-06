@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="500.0" maxWidth="899.0" minHeight="500.0" minWidth="899.0" prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AlbumHomeController">
+   <children>
+      <TextField fx:id="searchbar" layoutX="706.0" layoutY="77.0" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" />
+      <Label fx:id="artname" layoutX="42.0" layoutY="68.0" prefHeight="41.0" prefWidth="250.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font name="Segoe UI Emoji" size="21.0" />
+         </font>
+      </Label>
+      <ListView fx:id="albumlistview" layoutX="82.0" layoutY="195.0" prefHeight="237.0" prefWidth="669.0" style="-fx-background-color: #FF9B04;" />
+      <ImageView layoutX="654.0" layoutY="73.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_search_32px_1.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="42.0" layoutY="29.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
+   </children>
+</AnchorPane>

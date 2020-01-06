@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.chooseActionOnArtController">
+   <children>
+      <Button layoutX="131.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwAlbumHome" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Album" />
+      <Button layoutX="312.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwRating" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Rating" />
+      <Button layoutX="493.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Timeline" />
+      <Button layoutX="691.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwPerformance" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Performances" />
+      <ImageView layoutX="188.0" layoutY="247.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_music_record_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="372.0" layoutY="247.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_leaderboard_32px_2.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="561.0" layoutY="247.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_view_schedule_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="780.0" layoutY="247.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_party_32px.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="49.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="41.0" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
+      <Label fx:id="albumlbl" layoutX="94.0" layoutY="293.0" text="View the artist's albums" textFill="#ff9b04" />
+      <Label fx:id="ratinglbl" layoutX="262.0" layoutY="293.0" text="See your artists' leaderboard" textFill="#ff9b04" />
+      <Label fx:id="timelbl" layoutX="456.0" layoutY="293.0" text="View your artist's timeline" textFill="#ff9b04" />
+      <Label fx:id="perflbl" layoutX="661.0" layoutY="293.0" text="Schedule a live Performance" textFill="#ff9b04" />
+      <Label layoutX="312.0" layoutY="83.0" text="What would you like to do?" textFill="#ff9b04">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

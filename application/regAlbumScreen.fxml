@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.regAlbumScreenController">
+   <children>
+      <TextField layoutX="142.0" layoutY="238.0" />
+      <Label layoutX="142.0" layoutY="195.0" text="Album name" textFill="#fff9f9" />
+      <Button layoutX="787.0" layoutY="238.0" mnemonicParsing="false" text="add" />
+      <Button layoutX="43.0" layoutY="38.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
+      <Label layoutX="615.0" layoutY="195.0" text="Song name" textFill="WHITE" />
+      <TextField layoutX="571.0" layoutY="238.0" />
+      <Label layoutX="495.0" layoutY="289.0" prefHeight="63.0" prefWidth="301.0" text="Please write your song title and proceed to press the " textFill="WHITE" />
+      <Label layoutX="495.0" layoutY="335.0" text="add button before adding a second title.Thanks!" textFill="#f2eded" />
+      <ImageView layoutX="525.0" layoutY="232.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_playlist_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="91.0" layoutY="235.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_microphone_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="457.0" layoutY="305.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_exclamation_mark_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="48.0" layoutY="63.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_long_arrow_left_32px.png" />
+         </image>
+      </ImageView>
+      <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="DODGERBLUE" layoutX="351.0" layoutY="367.0" rotate="-58.4" startX="-150.0" stroke="BLACK" style="-fx-fill: #FF9B04;" />
+      <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="DODGERBLUE" layoutX="509.0" layoutY="119.0" rotate="-58.5" startX="-150.0" stroke="BLACK" style="-fx-fill: #FF9B04;" />
+   </children>
+</AnchorPane>

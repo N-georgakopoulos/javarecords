@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.managerHomeController">
+   <children>
+      <Label fx:id="manname" layoutX="47.0" layoutY="45.0" prefHeight="41.0" prefWidth="250.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font name="Segoe UI Emoji" size="21.0" />
+         </font></Label>
+      <ListView fx:id="list" layoutX="84.0" layoutY="192.0" prefHeight="237.0" prefWidth="669.0" style="-fx-background-color: #FF9B04;" />
+      <Label layoutX="84.0" layoutY="137.0" prefHeight="17.0" prefWidth="108.0" style="-fx-underline: true;" text="Pick an artist." textFill="#ff9b04">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="52.0" fitWidth="51.0" layoutX="180.0" layoutY="117.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_dancing_64px.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="searchbar" layoutX="660.0" layoutY="51.0" promptText="Search" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextField>
+      <ImageView layoutX="613.0" layoutY="50.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_search_32px.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

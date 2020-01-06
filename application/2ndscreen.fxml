@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.secScreenContr">
+	<children>
+		<ImageView fitHeight="500.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="@../../../../Desktop/artist.jpeg" />
+			</image>
+		</ImageView>
+		<ImageView fitHeight="500.0" fitWidth="335.0" layoutX="333.0" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="@../../../../Downloads/rsz_2manager4.jpg" />
+			</image>
+		</ImageView>
+		<Button layoutX="106.0" layoutY="131.0" mnemonicParsing="false" onAction="#throwArtHome" style="-fx-border-color: #ff9b04; -fx-background-color: #ff9b04; -fx-background-radius: 0;" text="I'm an artist">
+			<font>
+				<Font name="System Italic" size="17.0" />
+			</font>
+			<cursor>
+				<Cursor fx:constant="DEFAULT" />
+			</cursor>
+			<effect>
+				<Blend />
+			</effect>
+		</Button>
+		<Button layoutX="431.0" layoutY="131.0" mnemonicParsing="false" onAction="#throwManHome" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="I'm a manager">
+			<font>
+				<Font name="System Bold" size="17.0" />
+			</font>
+		</Button>
+		<TextField fx:id="textf" layoutX="428.0" layoutY="388.0" promptText="username" style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
+		<Button layoutX="141.0" layoutY="467.0" mnemonicParsing="false" onAction="#getCreds" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
+      <PasswordField fx:id="passf" layoutX="428.0" layoutY="430.0" promptText="password " style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
+      <Button layoutX="483.0" layoutY="461.0" mnemonicParsing="false" onAction="#getCreds" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
+      <TextField fx:id="textf1" layoutX="89.0" layoutY="388.0" promptText="username" style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
+      <PasswordField fx:id="passf1" layoutX="89.0" layoutY="430.0" promptText="password " style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" AnchorPane.rightAnchor="424.0" />
+      <Label fx:id="managerErrorlbl" layoutX="340.0" layoutY="187.0" prefHeight="20.0" prefWidth="325.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="artistErrolbl" layoutX="11.0" layoutY="187.0" prefHeight="20.0" prefWidth="325.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+	</children>
+</AnchorPane>

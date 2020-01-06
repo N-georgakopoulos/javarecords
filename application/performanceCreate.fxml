@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C; -fx-background-radius: 0;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.PerformancesController">
+   <children>
+      <Label layoutX="315.0" layoutY="55.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #1C1C1C;" text="Create a performance " textFill="#ff9b04">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="48.0" layoutY="43.0" mnemonicParsing="false" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
+      <ImageView layoutX="16.0" layoutY="229.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_performance_64px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="251.0" layoutY="250.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_price_64px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="457.0" layoutY="250.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_project_64px.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="663.0" layoutY="250.0">
+         <image>
+            <Image url="@../../../../AppData/Local/Temp/icons8_music_album_64px.png" />
+         </image>
+      </ImageView>
+      <ChoiceBox fx:id="venue" layoutX="89.0" layoutY="261.0" prefWidth="150.0" />
+      <TextField fx:id="ticketp" layoutX="322.0" layoutY="261.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="sales" layoutX="531.0" layoutY="261.0" prefHeight="25.0" prefWidth="104.0" />
+      <ChoiceBox fx:id="album" layoutX="735.0" layoutY="261.0" prefWidth="150.0" />
+      <Label layoutX="136.0" layoutY="199.0" text="Venue " textFill="#ff9b04" />
+      <Label layoutX="342.0" layoutY="199.0" text="Ticket price " textFill="#ff9b04" />
+      <Label layoutX="521.0" layoutY="199.0" text="Projected sales" textFill="#ff9b04" />
+      <Label layoutX="695.0" layoutY="199.0" text="Album to be performed" textFill="#ff9b04" />
+      <DatePicker fx:id="date" layoutX="173.0" layoutY="379.0" />
+      <Label layoutX="69.0" layoutY="378.0" text="Pick a date" textFill="#ff9b04">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="535.0" layoutY="378.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="calculatorBtn" layoutX="367.0" layoutY="379.0" mnemonicParsing="false" style="-fx-background-color: ff9b04; -fx-background-radius: 0;" text="Calculate projected profit and rating index" />
+      <Button fx:id="createBtn" layoutX="369.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: ff9b04; -fx-background-radius: 0;" text="Create the performance" />
+      <Label fx:id="createdLbl" layoutX="535.0" layoutY="444.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="profitlbl" layoutX="627.0" layoutY="378.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="scorelbl" layoutX="627.0" layoutY="405.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
