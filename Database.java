@@ -1,5 +1,4 @@
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,12 +63,12 @@ public class Database {
 					.prepareStatement("CREATE TABLE IF NOT EXISTS Partners(partname char(20),\r\n"
 							+ "								    attribute char(30),\r\n"
 							+ "                                    payPerHour decimal(10,2),\r\n"
-							+ "                                    PRIMARY KEY (partname)");//create Partner Table
+							+ "                                    PRIMARY KEY (partname)");// create Partner Table
 
 			PreparedStatement createStudios = con
 					.prepareStatement("CREATE TABLE IF NOT EXISTS Studios(studioname char(30),\r\n"
 							+ "								   pricePerHour decimal(10,2),\r\n"
-							+ "                                   PRIMARY KEY (studioname)");//create Studios table
+							+ "                                   PRIMARY KEY (studioname)");// create Studios table
 
 			createArtists.executeUpdate();
 			createlistOfVenues.executeUpdate();
@@ -263,7 +262,7 @@ public class Database {
 	}
 
 //METHODS TO FIND STAFFS FROM DATABASES TABLES
-	
+
 	public static boolean credentialsOkArtist(String username, String password) {
 		Connection con = getConnection();
 		PreparedStatement statement = con.prepareStatement("SELECT * FROM ARTISTS WHERE ARTISTS.username="+username);
@@ -276,8 +275,9 @@ public class Database {
 			return false;
 		
 	}
-	
+
 	public static boolean credentialsOkManager(String username, String password) {
+		try {
 		Connection con = getConnection();
 		PreparedStatement statement = con.prepareStatement("SELECT * FROM MANAGERS WHERE ARTISTS.username="+username);
 		ResultSet result = statement.executeQuery();
@@ -287,14 +287,38 @@ public class Database {
 			return true;
 		}else 
 			return false;
-		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
-	
-	public static Manager(String man) {
+
+	public static Manager returnManager(String onoma) {
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM "
-			
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM MANAGERS WHERE username=" + onoma);
+			ResultSet result = statement.executeQuery();
+			Manager man;
+			man = new Manager(result.getInt("managerid"), result.getString("username"),
+					result.getString("managerpassword"), findWhichArtists(managerid));
+			return man;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public static Artist returnArtist(String onoma) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM ARTISTS WHERE username=" + onoma);
+			ResultSet result = statement.executeQuery();
+			Artist art;
+			art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+					result.getDouble("rating"), result.getDouble("relevancyIndex"),
+					findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
+					result.getDouble("payPercentage"));
+			return man;
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 
@@ -316,6 +340,26 @@ public class Database {
 			System.out.println(e);
 		}
 		return Albums;
+	}
+
+	public static ArraList<Artist> findWhichArtist(intmanagerid){
+		ArrayList<Artist> Artists=new ArrayList<Artist<Artist>();>
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("SELECT artistid  username  password rating relevancyIndex  genre payPercentage managerid FROM Artists A, MANAGER M WHERE A.managerid=M.managerid");
+			ResultSet result = statement.executeQuery();
+			Artist art;
+			while (result.next()) {
+				art=new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+						result.getDouble("rating"), result.getDouble("relevancyIndex"),
+						findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
+						result.getDouble("payPercentage"));
+				Artists.add(art);
+			}
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+		return Artists;
 	}
 
 	public static ArrayList<String> findWhichSongs(String albumName) {
