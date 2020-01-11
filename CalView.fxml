@@ -79,7 +79,7 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="1">
+                  <Label fx:id="mon0" text="-" textFill="#ff9b04" GridPane.columnIndex="1">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -87,7 +87,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label layoutX="137.0" layoutY="17.0" text="-" textFill="#ff9b04">
+                  <Label fx:id="sun0" layoutX="137.0" layoutY="17.0" text="-" textFill="#ff9b04">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -98,7 +98,7 @@
                         <Insets left="25.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="10.0" layoutY="17.0" text="5" textFill="#ff9b04" GridPane.rowIndex="1">
+                  <Label fx:id="sun1" layoutX="10.0" layoutY="17.0" text="5" textFill="#ff9b04" GridPane.rowIndex="1">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -109,7 +109,7 @@
                         <Insets left="25.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="10.0" layoutY="47.0" text="6" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="mon1" layoutX="10.0" layoutY="47.0" text="6" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -117,7 +117,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="2">
+                  <Label fx:id="tue0" text="-" textFill="#ff9b04" GridPane.columnIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -125,7 +125,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="7" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="tue1" text="7" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -133,21 +133,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="12" textFill="#ff9b04" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="40.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets left="25.0" />
-                     </GridPane.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Label text="19" textFill="#ff9b04" GridPane.rowIndex="3">
+                  <Label fx:id="sun2" text="12" textFill="#ff9b04" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -161,7 +147,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="26" textFill="#ff9b04" GridPane.rowIndex="4">
+                  <Label fx:id="sun3" text="19" textFill="#ff9b04" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -175,7 +161,21 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.rowIndex="5">
+                  <Label fx:id="sun4" text="26" textFill="#ff9b04" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="sun5" text="-" textFill="#ff9b04" GridPane.rowIndex="5">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -186,7 +186,7 @@
                         <Insets left="25.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="13" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="mon2" text="13" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -197,7 +197,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="20" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="mon3" text="20" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -208,7 +208,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="27" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Label fx:id="mon4" text="27" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -219,7 +219,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Label fx:id="mon5" text="-" textFill="#ff9b04" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -227,18 +227,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="14" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Label text="21" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label fx:id="tue2" text="14" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -249,7 +238,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="28" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Label fx:id="tue3" text="21" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -260,31 +249,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="1" textFill="#ff9b04" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="8" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="15" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Label fx:id="tue4" text="28" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -295,7 +260,31 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="22" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <Label fx:id="tue5" text="-" textFill="#ff9b04" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="wed0" text="1" textFill="#ff9b04" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="wed1" text="8" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="wed2" text="15" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -306,7 +295,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="29" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Label fx:id="wed3" text="22" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -317,31 +306,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="2" textFill="#ff9b04" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="9" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="16" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <Label fx:id="wed4" text="29" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -352,7 +317,31 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="23" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                  <Label fx:id="wed5" text="-" textFill="#ff9b04" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="thu0" text="2" textFill="#ff9b04" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="thu1" text="9" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="thu2" text="16" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -363,7 +352,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="30" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Label fx:id="thu3" text="23" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -374,47 +363,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="3" textFill="#ff9b04" GridPane.columnIndex="5">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="18" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="25" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
-                  </Label>
-                  <Label text="31" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <Label fx:id="thu4" text="30" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -425,7 +374,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                  <Label fx:id="thu5" text="-" textFill="#ff9b04" GridPane.columnIndex="4" GridPane.rowIndex="5">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -433,7 +382,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="4" textFill="#ff9b04" GridPane.columnIndex="6">
+                  <Label fx:id="fri0" text="3" textFill="#ff9b04" GridPane.columnIndex="5">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -441,7 +390,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="11" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                  <Label fx:id="sat2" text="18" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -449,7 +398,7 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="10" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <Label fx:id="sat3" text="25" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -457,7 +406,15 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="17" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                  <Label fx:id="sat4" text="-" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="fri4" text="31" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -468,7 +425,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label text="-" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <Label fx:id="sat5" text="-" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="5">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -476,7 +433,50 @@
                         <Insets left="60.0" />
                      </padding>
                   </Label>
-                  <Label text="24" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <Label fx:id="sat0" text="4" textFill="#ff9b04" GridPane.columnIndex="6">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="sat1" text="11" textFill="#ff9b04" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="fri1" text="10" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="fri2" text="17" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="fri5" text="-" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="fri3" text="24" textFill="#ff9b04" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -498,11 +498,17 @@
       <Line endX="12.5" endY="-22.0" layoutX="501.0" layoutY="70.0" startX="12.5" startY="21.0" stroke="#ff9b04" AnchorPane.topAnchor="170.0" />
       <Line endX="12.5" endY="-22.0" layoutX="630.0" layoutY="70.0" startX="12.5" startY="21.0" stroke="#ff9b04" AnchorPane.topAnchor="170.0" />
       <Line endX="12.5" endY="-22.0" layoutX="756.0" layoutY="70.0" startX="12.5" startY="21.0" stroke="#ff9b04" AnchorPane.topAnchor="170.0" />
-      <Label layoutX="364.0" layoutY="92.0" text="Monthly View" textFill="#ff9b04">
+      <Label fx:id="monthTitle" layoutX="364.0" layoutY="92.0" text="Monthly View" textFill="#ff9b04">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
+      <Button fx:id="loadButton" layoutX="26.0" layoutY="96.0" mnemonicParsing="false" onAction="#LoadButtonClicked" style="-fx-background-color: #696969;" text="Load Data" textFill="#ff9b04">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="31.0" layoutY="125.0" text="(Double Click)" textFill="DIMGRAY" />
    </children>
 </AnchorPane>
 

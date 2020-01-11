@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,20 +45,17 @@ public class MonthController {
 
     @FXML
     private Button decbtn;
-
-    @FXML
-    void ButtonClicked(ActionEvent event){
-    }
-
+    
     @FXML
     void ClickedButton(ActionEvent event) throws IOException {
-    	Parent tableViewParent = FXMLLoader.load(MonthController.class.getResource("CalView.fxml"));
-    	Scene tableViewScene = new Scene(tableViewParent);
+    	Parent viewParent = FXMLLoader.load(MonthController.class.getResource("CalView.fxml"));
+    	Scene viewScene = new Scene(viewParent);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	String monthClicked = ((Button)event.getSource()).getText();
+    	CalendarController.monthChosen = monthClicked;
     	window.setTitle("Calendar");
-    	window.setScene(tableViewScene);
+    	window.setScene(viewScene);
     	window.show();
-    }
-
+     }
 }
 
