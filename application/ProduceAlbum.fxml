@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -14,64 +19,35 @@
 <?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-	prefWidth="899.0" style="-fx-background-color: #1c1c1c;"
-	xmlns="http://javafx.com/javafx/11.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.ProductionInterfaceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProductionInterfaceController">
 	<children>
-		<Polyline fill="#f2efef" layoutX="310.0" layoutY="355.0"
-			points="-310.0, 87.0, 589.0, -64.0, 589.0, 145.0, -310.0, 145.0"
-			smooth="false" stroke="#33333300" strokeLineCap="ROUND"
-			strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0" />
-		<ImageView fitHeight="221.0" fitWidth="228.0"
-			layoutX="604.0" layoutY="162.0" pickOnBounds="true"
-			preserveRatio="true">
-			<image>
-				<Image
-					url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/the%20wall.jpg" />
-			</image>
-		</ImageView>
-		<Label fx:id="albumTitle" alignment="CENTER" layoutX="289.0"
-			layoutY="23.0" prefHeight="27.0" prefWidth="285.0" textFill="WHITE">
+		<Polyline fill="#f2efef" layoutX="310.0" layoutY="355.0" points="-310.0, 87.0, 589.0, -64.0, 589.0, 145.0, -310.0, 145.0" smooth="false" stroke="#33333300" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0" />
+		<Label fx:id="albumTitle" alignment="CENTER" layoutX="289.0" layoutY="23.0" prefHeight="27.0" prefWidth="285.0" textFill="WHITE">
 			<font>
 				<Font name="Ebrima Bold" size="21.0" />
 			</font>
 		</Label>
-		<AnchorPane layoutX="25.0" layoutY="137.0"
-			prefHeight="272.0" prefWidth="55.0">
+		<AnchorPane layoutX="25.0" layoutY="137.0" prefHeight="272.0" prefWidth="55.0">
 			<children>
-				<ImageView fx:id="headphones" fitHeight="37.0"
-					fitWidth="43.0" layoutX="6.0" layoutY="109.0"
-					onMousePressed="#handleButtonAction" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fx:id="headphones" fitHeight="49.0" fitWidth="49.0" layoutX="3.0" layoutY="112.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image
-							url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/headph.png" />
+						<Image url="@imgsAndIcons/icons8_headphones_64px_2.png" />
 					</image>
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ImageView>
-				<ImageView fx:id="calendar" fitHeight="53.0"
-					fitWidth="49.0" layoutX="3.0" layoutY="26.0"
-					onMousePressed="#handleButtonAction" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fx:id="calendar" fitHeight="53.0" fitWidth="49.0" layoutX="3.0" layoutY="26.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/a.png" />
+						<Image url="@imgsAndIcons/icons8_calendar_64px_3.png" />
 					</image>
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ImageView>
-				<ImageView fx:id="partners" fitHeight="74.0"
-					fitWidth="55.0" layoutY="189.0"
-					onMousePressed="#handleButtonAction" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fx:id="partners" fitHeight="74.0" fitWidth="55.0" layoutY="189.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image
-							url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/partners.png" />
+						<Image url="@imgsAndIcons/icons8_people_64px_3.png" />
 					</image>
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
@@ -79,131 +55,98 @@
 				</ImageView>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="h_calendar" layoutX="105.0"
-			layoutY="162.0" onDragDetected="#handleButtonAction"
-			prefHeight="95.0" prefWidth="460.0">
+		<AnchorPane fx:id="h_calendar" layoutX="105.0" layoutY="162.0" onDragDetected="#handleButtonAction" prefHeight="95.0" prefWidth="460.0">
 			<children>
-				<DatePicker fx:id="startCalendar" layoutX="30.0"
-					layoutY="11.0" prefHeight="34.0" prefWidth="157.0"
-					promptText="Start Date">
-					<cursor>
-						<Cursor fx:constant="HAND" />
-					</cursor>
-				</DatePicker>
-				<DatePicker fx:id="releaseCalendar" layoutX="243.0"
-					layoutY="11.0" prefHeight="34.0" prefWidth="157.0"
-					promptText="Release Date">
-					<cursor>
-						<Cursor fx:constant="HAND" />
-					</cursor>
-				</DatePicker>
+      				<DatePicker fx:id="startCalendar" layoutX="30.0" layoutY="11.0" prefHeight="34.0" prefWidth="157.0" promptText="Start date">
+      					<cursor>
+      						<Cursor fx:constant="HAND" />
+      					</cursor>
+      				</DatePicker>
+            <DatePicker fx:id="releaseCalendar" layoutX="251.0" layoutY="11.0" prefHeight="34.0" prefWidth="157.0" promptText="Release Date">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </DatePicker>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="h_headphones" layoutX="92.0"
-			layoutY="181.0" onDragDetected="#handleButtonAction"
-			prefHeight="221.0" prefWidth="487.0" visible="false">
+		<AnchorPane fx:id="h_headphones" layoutX="92.0" layoutY="181.0" onDragDetected="#handleButtonAction" prefHeight="221.0" prefWidth="487.0" visible="false">
 			<children>
-				<ChoiceBox fx:id="chooseStudio" layoutX="25.0"
-					layoutY="64.0" prefHeight="34.0" prefWidth="164.0">
+				<ChoiceBox fx:id="chooseStudio" layoutX="25.0" layoutY="64.0" prefHeight="34.0" prefWidth="164.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ImageView fitHeight="38.0" fitWidth="35.0"
-					layoutX="285.0" layoutY="65.0" pickOnBounds="true"
-					preserveRatio="true">
-					<image>
-						<Image url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/dur.png" />
-					</image>
-				</ImageView>
+            <TextField fx:id="hoursTxt" layoutX="263.0" layoutY="70.0" promptText="Insert production hours" />
 				
 			
 			</children>
 		
 		</AnchorPane>
-		<AnchorPane fx:id="h_partners" layoutX="97.0"
-			layoutY="156.0" onDragDetected="#handleButtonAction"
-			prefHeight="307.0" prefWidth="478.0" visible="false">
+		<AnchorPane fx:id="h_partners" layoutX="97.0" layoutY="156.0" onDragDetected="#handleButtonAction" prefHeight="307.0" prefWidth="478.0" visible="false">
 			<children>
-				<ChoiceBox fx:id="composer" layoutX="56.0" layoutY="55.0"
-					prefWidth="150.0">
+				<ChoiceBox fx:id="composer" layoutX="56.0" layoutY="55.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ChoiceBox fx:id="lyricist" layoutX="277.0" layoutY="55.0"
-					prefWidth="150.0">
+				<ChoiceBox fx:id="lyricist" layoutX="277.0" layoutY="55.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ChoiceBox fx:id="producer" layoutX="56.0" layoutY="132.0"
-					prefWidth="150.0">
+				<ChoiceBox fx:id="producer" layoutX="56.0" layoutY="132.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ChoiceBox fx:id="musician1" layoutX="277.0"
-					layoutY="132.0" prefWidth="150.0">
+				<ChoiceBox fx:id="musician1" layoutX="277.0" layoutY="132.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ChoiceBox fx:id="musician2" layoutX="56.0"
-					layoutY="205.0" prefWidth="150.0">
+				<ChoiceBox fx:id="musician2" layoutX="56.0" layoutY="205.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<ChoiceBox fx:id="musician3" layoutX="277.0"
-					layoutY="205.0" prefWidth="150.0">
+				<ChoiceBox fx:id="musician3" layoutX="277.0" layoutY="205.0" prefWidth="150.0">
 					<cursor>
 						<Cursor fx:constant="OPEN_HAND" />
 					</cursor>
 				</ChoiceBox>
-				<Label layoutX="56.0" layoutY="26.0" prefHeight="17.0"
-					prefWidth="150.0" text="Composer" textFill="WHITE">
+				<Label layoutX="56.0" layoutY="26.0" prefHeight="17.0" prefWidth="150.0" text="Composer" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="277.0" layoutY="26.0" prefHeight="17.0"
-					prefWidth="150.0" text="Lyricist" textFill="WHITE">
+				<Label layoutX="277.0" layoutY="26.0" prefHeight="17.0" prefWidth="150.0" text="Lyricist" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="56.0" layoutY="106.0" prefHeight="17.0"
-					prefWidth="150.0" text="Producer" textFill="WHITE">
+				<Label layoutX="56.0" layoutY="106.0" prefHeight="17.0" prefWidth="150.0" text="Producer" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="277.0" layoutY="106.0" prefHeight="17.0"
-					prefWidth="150.0" text="First Musician" textFill="WHITE">
+				<Label layoutX="277.0" layoutY="106.0" prefHeight="17.0" prefWidth="150.0" text="First Musician" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="56.0" layoutY="178.0" prefHeight="17.0"
-					prefWidth="150.0" text="Second Musician" textFill="WHITE">
+				<Label layoutX="56.0" layoutY="178.0" prefHeight="17.0" prefWidth="150.0" text="Second Musician" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="277.0" layoutY="178.0" prefHeight="17.0"
-					prefWidth="150.0" text="Third Musician" textFill="WHITE">
+				<Label layoutX="277.0" layoutY="178.0" prefHeight="17.0" prefWidth="150.0" text="Third Musician" textFill="WHITE">
 					<font>
 						<Font name="Ebrima Bold" size="15.0" />
 					</font>
 				</Label>
 			</children>
 		</AnchorPane>
-		<Button fx:id="submit" layoutX="432.0" layoutY="429.0"
-			mnemonicParsing="false" onAction="#handleSubmitButton"
-			prefHeight="35.0" prefWidth="171.0"
-			style="-fx-background-color: #ff9b04;"
-			text="Submit &amp; Calculate Cost" textFill="WHITE">
+		<Button layoutX="432.0" layoutY="447.0" mnemonicParsing="false" onAction="#produceAlb" prefHeight="35.0" prefWidth="171.0" style="-fx-background-color: #ff9b04; -fx-background-radius: 0;" text="Submit album" textFill="#333333">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
@@ -211,21 +154,29 @@
 				<Cursor fx:constant="OPEN_HAND" />
 			</cursor>
 		</Button>
-		<Label fx:id="result" alignment="CENTER" layoutX="660.0"
-			layoutY="430.0" prefHeight="34.0" prefWidth="111.0"
-			textFill="#1c1c1c">
+		<Label fx:id="subLbl" alignment="CENTER" layoutX="609.0" layoutY="446.0" prefHeight="34.0" prefWidth="285.0" textFill="#1c1c1c">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Label>
-		<ImageView fitHeight="27.0" fitWidth="43.0" layoutX="31.0"
-			layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-			<image>
-				<Image url="@../../../../Desktop/ΧΕΙΜΕΡΙΝΟ/Προ%202/arrow.png" />
-			</image>
-			<cursor>
-				<Cursor fx:constant="CLOSED_HAND" />
-			</cursor>
-		</ImageView>
+      <Button layoutX="32.0" layoutY="48.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="41.0" style="-fx-background-color: #ff9b04; -fx-background-radius: 0;" text="Back" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="603.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgsAndIcons/albumsss.PNG" />
+         </image>
+      </ImageView>
+      <Button layoutX="432.0" layoutY="402.0" mnemonicParsing="false" onAction="#calculateCost" prefHeight="35.0" prefWidth="171.0" style="-fx-background-color: #ff9b04; -fx-background-radius: 0;" text="Calculate Cost" textFill="#333333">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="calcLbl" alignment="CENTER" layoutX="616.0" layoutY="403.0" prefHeight="34.0" prefWidth="222.0" textFill="#1c1c1c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
 	</children>
 </AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1c1c1c; -fx-background-radius: 0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.pickRegAlbController">
+   <children>
+      <Label layoutX="289.0" layoutY="88.0" text="Pick an album to manage it's production" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="35.0" layoutY="45.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: FF9B04; -fx-background-radius: 0;" text="Back" />
+      <ListView fx:id="list" layoutX="103.0" layoutY="147.0" prefHeight="265.0" prefWidth="696.0" />
+   </children>
+</AnchorPane>

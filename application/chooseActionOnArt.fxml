@@ -15,28 +15,8 @@
    <children>
       <Button layoutX="131.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwAlbumHome" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Album" />
       <Button layoutX="312.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwRating" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Rating" />
-      <Button layoutX="493.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Timeline" />
+      <Button layoutX="493.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwCalendar" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Timeline" />
       <Button layoutX="691.0" layoutY="250.0" mnemonicParsing="false" onAction="#throwPerformance" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Performances" />
-      <ImageView layoutX="188.0" layoutY="247.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_music_record_32px.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="372.0" layoutY="247.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_leaderboard_32px_2.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="561.0" layoutY="247.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_view_schedule_32px.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="780.0" layoutY="247.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_party_32px.png" />
-         </image>
-      </ImageView>
       <Button layoutX="49.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="41.0" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
       <Label fx:id="albumlbl" layoutX="94.0" layoutY="293.0" text="View the artist's albums" textFill="#ff9b04" />
       <Label fx:id="ratinglbl" layoutX="262.0" layoutY="293.0" text="See your artists' leaderboard" textFill="#ff9b04" />
@@ -47,5 +27,26 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="70.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView layoutX="189.0" layoutY="248.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_music_album_30px_3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="372.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgsAndIcons/icons8_leaderboard_30px_3.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="569.0" layoutY="251.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_calendar_24px_1.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="786.0" layoutY="247.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_rock_music_32px_1.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

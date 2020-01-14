@@ -9,13 +9,13 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #ff9b04;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
 	<children>
-		<Button layoutX="588.0" layoutY="332.0" mnemonicParsing="false" onAction="#startButtonTODO" style="-fx-background-color: ffffff; -fx-border-color: #000000;" text="Start" />
-		<ImageView fitHeight="500.0" fitWidth="345.0" pickOnBounds="true" preserveRatio="true">
-			<image>
-				<Image url="@../../../../Downloads/guitar.png" />
-			</image>
+		<Button layoutX="575.0" layoutY="326.0" mnemonicParsing="false" onAction="#startButtonTODO" style="-fx-border-color: #000000;" text="Start" />
+		<ImageView fitHeight="500.0" fitWidth="345.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgsAndIcons/rsz_4javareclogo.png" />
+         </image>
 		</ImageView>
-		<Label contentDisplay="CENTER" layoutX="380.0" layoutY="182.0" text="Welcome to the Java Records ERP" textFill="WHITE">
+		<Label contentDisplay="CENTER" layoutX="381.0" layoutY="234.0" text="Welcome to the Java Records ERP" textFill="#333333">
 			<font>
 
 				<Font name="Lucida Sans Regular" size="27.0" />

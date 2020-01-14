@@ -1,5 +1,11 @@
 package application;
 
+/*
+ * 
+ * 
+ * 
+ * author @N-Georgakopoulos
+ */
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +17,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.executiveClasses.Artist;
+import application.executiveClasses.Database;
 import application.executiveClasses.Manager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -43,7 +50,7 @@ public class managerHomeController extends ListView<String> implements Initializ
 	// static manager object that defines which manager is the current user.Input
 	// received from previous window.
 	@FXML
-	public static String manager ;
+	public static Manager manager;
 	// this manager's list of artist names,to be displayed in the window.
 	@FXML
 	private ListView<String> list;
@@ -54,9 +61,9 @@ public class managerHomeController extends ListView<String> implements Initializ
 	// fxml element links to fxml document.
 	@FXML
 	Label manname;
-	@FXML TextField searchbar;
+	@FXML
+	TextField searchbar;
 
-	
 	// cell factory for the listview.determines characteristics of blocks displayed
 	// in the listview.
 	static class Cell extends ListCell<String> {
@@ -75,8 +82,7 @@ public class managerHomeController extends ListView<String> implements Initializ
 			this.lbl.setMinWidth(20);
 			hbox.setStyle("-fx-background-color: #1C1C1C");
 
-			hbox.getChildren().addAll(lbl, pane);
-			hbox.setHgrow(pane, Priority.ALWAYS);
+			hbox.getChildren().addAll(lbl);
 		}
 
 		public void updateItem(String name, boolean empty) {
@@ -97,21 +103,22 @@ public class managerHomeController extends ListView<String> implements Initializ
 	// on which future functions will be performed.
 	@SuppressWarnings("unchecked")
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		for (int i = 0; i < artistas.length; i++) {
-			names.add(artistas[i].getUsername());
+		ArrayList<Artist> artists = new ArrayList<Artist>();
+		artists = Database.findWhichArtist(manager.getId());
+		ArrayList<String> artNames = new ArrayList<String>();
+		for (int i = 0; i < artists.size(); i++) {
+			artNames.add(artists.get(i).getUsername());
 		}
-		manname.setText("Your artists, " + manager);
-		try {
-			Manager.loadObj();
+		manname.setText("Your artists, " + manager.getUsername());
+		entries = FXCollections.observableArrayList(artNames);
+		list.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-			entries = FXCollections.observableArrayList(names);
-			list.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-				@Override
-				public void handle(MouseEvent event) {
-					System.out.println("clicked on " + list.getSelectionModel().getSelectedItem());
-					String artist = list.getSelectionModel().getSelectedItem();
-					AlbumHomeController.artist=artist;
+			@Override
+			public void handle(MouseEvent event) {
+				String artist = list.getSelectionModel().getSelectedItem();
+				chooseActionOnArtController.chosenArtist = Database.returnArtist(artist);
+				AlbumHomeController.artist = Database.returnArtist(artist);
+				if (Database.returnArtist(artist) != null) {
 					try {
 
 						Parent root = FXMLLoader.load(getClass().getResource("chooseActionOnArt.fxml"));
@@ -121,6 +128,7 @@ public class managerHomeController extends ListView<String> implements Initializ
 						window.setTitle("Choose action on an Artist");
 						window.setScene(scene);
 						window.show();
+
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -128,11 +136,8 @@ public class managerHomeController extends ListView<String> implements Initializ
 
 					}
 				}
-			});
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			}
+		});
 		list.setItems(entries);
 		list.setCellFactory(param -> new Cell());
 		searchbar.setPromptText("Search");
@@ -154,7 +159,7 @@ public class managerHomeController extends ListView<String> implements Initializ
 		window.show();
 
 	}
-	
+
 	public void handleSearchByKey(String oldVal, String newVal) {
 		// If the number of characters in the text box is less than last time
 		// it must be because the user pressed delete

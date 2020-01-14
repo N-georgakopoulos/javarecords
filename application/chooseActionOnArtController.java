@@ -1,5 +1,11 @@
 package application;
 
+/*
+ * 
+ * 
+ * 
+ * author @N-Georgakopoulos
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +21,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class chooseActionOnArtController {
-	//Artist under which the manager user performs operations
-	public static String chosenArtist;
+	// Artist under which the manager user performs operations
+	public static Artist chosenArtist;
 	@FXML
 	static Label perflbl;
 	@FXML
@@ -24,9 +30,10 @@ public class chooseActionOnArtController {
 	@FXML
 	static Label albumlbl;
 
-	public static String getChosenArtist() {
+	public static Artist getChosenArtist() {
 		return chosenArtist;
 	}
+
 	// returns to previous window/scene
 	public void back(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("manHome.fxml"));
@@ -35,10 +42,16 @@ public class chooseActionOnArtController {
 		window.setScene(scene);
 		window.show();
 	}
-	public static void setChosenArtist(String artist) {
-		chooseActionOnArtController.chosenArtist = artist;
+
+	public void throwCalendar(ActionEvent e) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("TimelineView.fxml"));
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		window.setTitle("Performances");
+		window.setScene(scene);
+		window.show();
 	}
-	
+
 	// throws the create a performance window/scene.
 	public void throwPerformance(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("createAPerformance.fxml"));
@@ -48,6 +61,7 @@ public class chooseActionOnArtController {
 		window.setScene(scene);
 		window.show();
 	}
+
 	// throws the rating window
 	public void throwRating(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Rating.fxml"));
@@ -57,7 +71,8 @@ public class chooseActionOnArtController {
 		window.setScene(scene);
 		window.show();
 	}
-	//throws the album home window
+
+	// throws the album home window
 	public void throwAlbumHome(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("AlbumHome.fxml"));
 		Scene scene = new Scene(root);

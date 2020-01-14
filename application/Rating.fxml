@@ -24,13 +24,13 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ListView fx:id="rankingList" layoutX="81.0" layoutY="93.0" prefHeight="315.0" prefWidth="737.0" style="-fx-background-color: #333333;" />
-      <ImageView layoutX="434.0" layoutY="65.0">
+      <ListView fx:id="mpampinos" layoutX="81.0" layoutY="93.0" prefHeight="315.0" prefWidth="737.0" style="-fx-background-color: #333333;" />
+      <Button layoutX="48.0" layoutY="31.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: ff9b04; -fx-background-radius: 0;" text="Back" />
+      <Label layoutX="449.0" layoutY="447.0" prefHeight="17.0" prefWidth="438.0" text="*The rating order is created via a formula based on your artists' total profit." textFill="#ff9b04" />
+      <ImageView layoutX="519.0" layoutY="43.0">
          <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_leaderboard_32px_1.png" />
+            <Image url="@imgsAndIcons/icons8_leaderboard_30px_3.png" />
          </image>
       </ImageView>
-      <Button layoutX="48.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: ff9b04; -fx-background-radius: 0;" text="Back" />
-      <Label layoutX="494.0" layoutY="447.0" text="*The rating orded is created via a formula based on your artists total profit." textFill="#ff9b04" />
    </children>
 </AnchorPane>

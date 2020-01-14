@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.YoloCalController">
+   <children>
+      <Label fx:id="monthlbl" layoutX="170.0" layoutY="39.0" text="Month." textFill="#ff9b04">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button layoutX="39.0" layoutY="42.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Back" />
+      <ListView fx:id="listviewNode" layoutX="86.0" layoutY="175.0" prefHeight="140.0" prefWidth="684.0" />
+      <Label fx:id="nullLbl" layoutX="185.0" layoutY="443.0" prefHeight="17.0" prefWidth="531.0" textFill="RED">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="186.0" text="Week 1" textFill="#ff9b04" />
+      <Label layoutX="31.0" layoutY="216.0" text="Week 2" textFill="#ff9b04" />
+      <Label layoutX="31.0" layoutY="242.0" text="Week 3" textFill="#ff9b04" />
+      <Label layoutX="31.0" layoutY="268.0" prefHeight="17.0" prefWidth="40.0" text="Week 4" textFill="#ff9b04" />
+      <Label layoutX="31.0" layoutY="291.0" text="Week 5" textFill="#ff9b04" />
+   </children>
+</AnchorPane>

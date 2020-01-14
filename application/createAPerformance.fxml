@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C; -fx-background-radius: 0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PerformancesController">
    <children>
-      <Label layoutX="315.0" layoutY="55.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #1C1C1C;" text="Create a performance " textFill="#ff9b04">
+      <Label layoutX="315.0" layoutY="55.0" prefHeight="40.0" prefWidth="269.0" style="-fx-background-color: #1C1C1C;" text=" Create a performance " textFill="#ff9b04">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -46,27 +46,27 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ImageView layoutX="657.0" layoutY="242.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_music_album_64px_1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="16.0" layoutY="229.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_performance_64px_1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="446.0" layoutY="242.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_project_64px_1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="251.0" layoutY="242.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_price_64px_1.png" />
-         </image>
-      </ImageView>
       <Label fx:id="errorlbl" layoutX="20.0" layoutY="437.0" prefHeight="17.0" prefWidth="261.0" text="Label" />
       <Button fx:id="scoreBtn" layoutX="369.0" layoutY="379.0" mnemonicParsing="false" onAction="#calculateAttendance" style="-fx-background-color: ff9b04; -fx-background-radius: 0;" text="Calculate attendance (%) " />
+      <ImageView layoutX="18.0" layoutY="227.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_performance_64px_3.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="249.0" layoutY="242.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_price_64px_6.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="449.0" layoutY="241.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_project_64px_1.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="658.0" layoutY="240.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_music_album_64px_4.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

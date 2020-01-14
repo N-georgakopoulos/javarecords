@@ -1,7 +1,8 @@
 package application;
 
 import javafx.scene.control.*;
-
+import application.executiveClasses.Artist;
+import application.executiveClasses.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/*
+ * 
+ * 
+ * 
+ * author @N-Georgakopoulos
+ */
 public class secScreenContr {
 
 //FXML document elements linked to ctrlr class	
@@ -29,7 +36,7 @@ public class secScreenContr {
 	@FXML
 	Label artistErrolbl;
 
-	//throws the next manager user screen
+	// throws the next manager user screen
 	public void throwManHome() throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("manHome.fxml"));
 
@@ -51,19 +58,28 @@ public class secScreenContr {
 		window.setScene(scene);
 		window.show();
 	}
-	//checks the credentials given from the user
-	public void getCreds(ActionEvent e) throws Exception {
+
+	// checks the credentials given from the artist user with data in database
+	public void checkCredsArt(ActionEvent e) throws Exception {
+		String username = textf1.getText();
+		String password = passf1.getText();
+		boolean credsOk = Database.credentialsOkArtist(username, password);
+		if (credsOk) {
+			artistHomeController.artist = Database.returnArtist(username);
+			throwArtHome();
+		} else {
+			artistErrolbl.setText("Wrong username or password,please try again");
+		}
+	}
+
+	// checks the credentials given from the artist user with data in database
+	public void checkCredsMan(ActionEvent e) throws Exception {
 		String username = textf.getText();
 		String password = passf.getText();
-		// TODO boolean credsOk = checkCreds(username,password) checks up in db
-		// TODO this.manager=findMan(username)
-		int x = textf.getLength();
-		boolean credsOk = true;
-		// lbl.setText(textf.getText());
-		if (x < 6)
-			credsOk = false;
+		boolean credsOk = Database.credentialsOkManager(username, password);
+
 		if (credsOk) {
-			managerHomeController.manager=textf.getText();
+			managerHomeController.manager = Database.returnManager(username);
 			throwManHome();
 		} else {
 			managerErrorlbl.setText("Wrong username or password,please try again");

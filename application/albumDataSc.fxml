@@ -1,8 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AlbumDataScController">
+   <children>
+      <Label fx:id="header" layoutX="47.0" layoutY="75.0" text="This albums data." textFill="#ff9b04">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="209.0" text="Physical sale price" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="275.0" text="Digital sale price" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="240.0" layoutY="342.0" text="Digital sales " textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="237.0" layoutY="411.0" text="Physical sales" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="197.0" layoutY="340.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_play_button_circled_30px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="197.0" layoutY="272.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_card_payment_30px_1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="197.0" layoutY="410.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_music_record_32px_2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="physSalesP" layoutX="497.0" layoutY="209.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="digSalesP" layoutX="497.0" layoutY="275.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="digSales" layoutX="497.0" layoutY="341.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="phySales" layoutX="497.0" layoutY="412.0" text="Label" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="#ff9b04" layoutX="662.0" layoutY="97.0" rotate="40.0" smooth="false" startX="-150.0" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" />
+      <Button layoutX="47.0" layoutY="44.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #ff9b04; -fx-background-radius: 0;" text="Back" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="197.0" layoutY="206.0">
+         <image>
+            <Image url="@imgsAndIcons/icons8_price_26px_2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="223.0" fitWidth="150.0" layoutX="25.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgsAndIcons/albumsss.PNG" />
+         </image>
+      </ImageView>
+      <Label fx:id="physSalesP1" layoutX="707.0" layoutY="209.0" text="Songs" textFill="#ff9b04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="songlist" layoutX="579.0" layoutY="240.0" prefHeight="181.0" prefWidth="315.0" />
+   </children>
 </AnchorPane>
-

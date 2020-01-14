@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -26,8 +27,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+/*
+ * 
+ * 
+ * 
+ * author @N-Georgakopoulos
+ */
 public class PerformancesController extends ListView<String> implements Initializable {
-	ObservableList<Venues> x;
+	ObservableList<Album> albumList;
+	ObservableList<Venues> venueList;
 	@FXML
 	Button calculatorBtn;
 	@FXML
@@ -43,6 +51,7 @@ public class PerformancesController extends ListView<String> implements Initiali
 	@FXML
 	ChoiceBox<Album> album;
 	@FXML
+
 	DatePicker date;
 	private Performances performance;
 	@FXML
@@ -52,17 +61,21 @@ public class PerformancesController extends ListView<String> implements Initiali
 	@FXML
 	Label createdLbl;
 	@FXML
-	static Label errorlbl;
+	Label errorlbl;
 
 	public void createPerformance(ActionEvent event) throws Exception {
 		if (sales.getText() == "" || ticketp.getText() == "" || album.getSelectionModel().getSelectedItem() == null
 				|| venue.getSelectionModel().getSelectedItem() == null || date.getValue() == null) {
 			errorlbl.setText("Please fill all the nescessary spaces");
 		} else {
-			// create performance in timeline
+			LocalDate daterino = date.getValue();
+			Database.addsEvent(chooseActionOnArtController.chosenArtist.getId(), daterino.getDayOfMonth(),
+					daterino.getMonthValue(), "Performance");
+
 			createdLbl.setText("Your performance has been created! ");
 			errorlbl.setText("");
 		}
+
 	}
 
 	public void calculateBtn() {
@@ -105,16 +118,27 @@ public class PerformancesController extends ListView<String> implements Initiali
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		Venues v1 = new Venues(3002, "kosnivenue", 100);
-		Venues v2 = new Venues(4, "ariannavenue", 100);
-		x = FXCollections.observableArrayList(v1, v2);
-		System.out.println(v1.toString() + v2.toString());
-		venue.setItems(x);
+		Artist currentArtist = chooseActionOnArtController.chosenArtist;
+		// initializing choicebox for albums with updated album list of the current
+		// artist chosen in previous window
+		ArrayList<Album> albums = null;
+		ArrayList<Venues> venues = null;
+		try {
+			albums = Database.findWhichAlbum(currentArtist.getId());
+			venues = Database.returnVenues();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		venueList = FXCollections.observableArrayList(venues);
+		venue.setItems(venueList);
+		albumList = FXCollections.observableArrayList(albums);
+		album.setItems(albumList);
 
 	}
-	//changes the errorlbl text if the user does not fill in all the nescessary fields
-	public static void setErrorLbl(String errormsg) {
+
+	// changes the errorlbl text if the user does not fill in all the nescessary
+	// fields
+	public void setErrorLbl(String errormsg) {
 		errorlbl.setText(errormsg);
 	}
 

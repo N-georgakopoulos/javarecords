@@ -13,12 +13,12 @@
 	<children>
 		<ImageView fitHeight="500.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
 			<image>
-				<Image url="@../../../../Desktop/artist.jpeg" />
+				<Image url="@imgsAndIcons/artist.jpeg" />
 			</image>
 		</ImageView>
 		<ImageView fitHeight="500.0" fitWidth="335.0" layoutX="333.0" pickOnBounds="true" preserveRatio="true">
 			<image>
-				<Image url="@../../../../Downloads/rsz_2manager4.jpg" />
+				<Image url="@imgsAndIcons/rsz_2manager4.jpg" />
 			</image>
 		</ImageView>
 		<Button layoutX="106.0" layoutY="131.0" mnemonicParsing="false" onAction="#throwArtHome" style="-fx-border-color: #ff9b04; -fx-background-color: #ff9b04; -fx-background-radius: 0;" text="I'm an artist">
@@ -38,9 +38,9 @@
 			</font>
 		</Button>
 		<TextField fx:id="textf" layoutX="428.0" layoutY="388.0" promptText="username" style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
-		<Button layoutX="141.0" layoutY="467.0" mnemonicParsing="false" onAction="#getCreds" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
+		<Button layoutX="141.0" layoutY="467.0" mnemonicParsing="false" onAction="#checkCredsArt" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
       <PasswordField fx:id="passf" layoutX="428.0" layoutY="430.0" promptText="password " style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
-      <Button layoutX="483.0" layoutY="461.0" mnemonicParsing="false" onAction="#getCreds" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
+      <Button layoutX="483.0" layoutY="467.0" mnemonicParsing="false" onAction="#checkCredsMan" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;" text="Login" />
       <TextField fx:id="textf1" layoutX="89.0" layoutY="388.0" promptText="username" style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" />
       <PasswordField fx:id="passf1" layoutX="89.0" layoutY="430.0" promptText="password " style="-fx-background-radius: 0; -fx-border-color: #FF9B04; -fx-border-width: 3;" AnchorPane.rightAnchor="424.0" />
       <Label fx:id="managerErrorlbl" layoutX="340.0" layoutY="187.0" prefHeight="20.0" prefWidth="325.0" textFill="RED">

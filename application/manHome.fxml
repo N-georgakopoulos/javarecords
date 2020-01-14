@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="899.0" style="-fx-background-color: #1C1C1C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.managerHomeController">
    <children>
-      <Label fx:id="manname" layoutX="47.0" layoutY="45.0" prefHeight="41.0" prefWidth="250.0" text="Label" textFill="#ff9b04">
+      <Label fx:id="manname" layoutX="47.0" layoutY="45.0" prefHeight="41.0" prefWidth="569.0" text="Label" textFill="#ff9b04">
          <font>
             <Font name="Segoe UI Emoji" size="21.0" />
          </font></Label>
@@ -19,11 +19,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ImageView fitHeight="52.0" fitWidth="51.0" layoutX="180.0" layoutY="117.0">
-         <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_dancing_64px.png" />
-         </image>
-      </ImageView>
       <TextField fx:id="searchbar" layoutX="660.0" layoutY="51.0" promptText="Search" style="-fx-background-color: #FF9B04; -fx-background-radius: 0;">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -31,7 +26,12 @@
       </TextField>
       <ImageView layoutX="613.0" layoutY="50.0">
          <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_search_32px.png" />
+            <Image url="@imgsAndIcons/icons8_search_32px_2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="167.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgsAndIcons/icons8_party_50px.png" />
          </image>
       </ImageView>
    </children>

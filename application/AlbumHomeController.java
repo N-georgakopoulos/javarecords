@@ -1,12 +1,20 @@
 package application;
 
+/*
+ * 
+ * 
+ * 
+ * author @N-Georgakopoulos
+ */
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.executiveClasses.Album;
 import application.executiveClasses.Artist;
+import application.executiveClasses.Database;
 import application.executiveClasses.Manager;
 import application.managerHomeController.Cell;
 import javafx.beans.value.ChangeListener;
@@ -29,7 +37,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -40,7 +47,7 @@ public class AlbumHomeController extends ListView<String> implements Initializab
 	// processed.Input
 	// received from previous window.
 	@FXML
-	public static String artist;
+	public static Artist artist;
 	// this artists list of albums,plus their listview fxml object in which they
 	// will be displayed
 	@FXML
@@ -48,10 +55,11 @@ public class AlbumHomeController extends ListView<String> implements Initializab
 	ObservableList<String> albums;
 
 	// fxml element links to fxml document.
-	@FXML
-	Label artname;
+
 	@FXML
 	TextField searchbar;
+	@FXML
+	Label onomakallitexnh;
 
 	// cell factory for the listview.determines characteristics of blocks displayed
 	// in the listview.
@@ -93,39 +101,40 @@ public class AlbumHomeController extends ListView<String> implements Initializab
 	// on which future functions will be performed.
 	@SuppressWarnings("unchecked")
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		artname.setText(artist + "'s Albums");
+		ArrayList<Album> albums1 = new ArrayList<Album>();
 		try {
-			Manager.loadObj();
-			albums = FXCollections.observableArrayList("The wall", " river ", " aek ");
-			albumlistview.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-				@Override
-				public void handle(MouseEvent event) {
-					System.out.println("clicked on " + albumlistview.getSelectionModel().getSelectedItem());
-					String album = albumlistview.getSelectionModel().getSelectedItem();
-
-					try {
-
-						Parent root = FXMLLoader.load(getClass().getResource("albumDataSc.fxml"));
-
-						Scene scene = new Scene(root);
-						Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-						window.setTitle(albumlistview.getSelectionModel().getSelectedItem() + " album data");
-						window.setScene(scene);
-						window.show();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} finally {
-
-					}
-				}
-			});
-		} catch (MalformedURLException e) {
+			albums1 = Database.findWhichAlbum(artist.getId());
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		ArrayList<String> albumNames = new ArrayList<String>();
+		for (int i = 0; i < albums1.size(); i++) {
+			albumNames.add(albums1.get(i).getname());
+		}
+		onomakallitexnh.setText(artist.getUsername() + "'s Albums");
+		albums = FXCollections.observableArrayList(albumNames);
+		albumlistview.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				AlbumDataScController.albumName = albumlistview.getSelectionModel().getSelectedItem();
+				try {
+
+					Parent root = FXMLLoader.load(getClass().getResource("albumDataSc.fxml"));
+					Scene scene = new Scene(root);
+					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					window.setTitle(albumlistview.getSelectionModel().getSelectedItem() + " album data");
+					window.setScene(scene);
+					window.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+
+				}
+			}
+		});
 		albumlistview.setItems(albums);
 		albumlistview.setCellFactory(param -> new Cell());
 		searchbar.textProperty().addListener(new ChangeListener() {
@@ -139,7 +148,7 @@ public class AlbumHomeController extends ListView<String> implements Initializab
 	}
 
 	public void back(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("manHome.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("chooseActionOnArt.fxml"));
 		Scene scene = new Scene(root);
 		Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		window.setTitle("Home");
@@ -169,6 +178,16 @@ public class AlbumHomeController extends ListView<String> implements Initializab
 			}
 		}
 		albumlistview.setItems(subentries);
+	}
+
+	@FXML
+	public void throwProduction(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("PickRegAlb.fxml"));
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setTitle("Home");
+		window.setScene(scene);
+		window.show();
 	}
 
 }
