@@ -1,4 +1,3 @@
-package javarecords;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,66 +7,39 @@ import java.util.ArrayList;
 
 public class Database {
 
-	public static void main(String args[]) throws Exception {
-		createTables();
-		//viewAlbum();
-		//startInserts();
-	}
-
 	// CREATE TABLE METHOD
 
-	public static void createTables() {// creates the tables
+	public static void createTables() {// creates the tables (already been executed)
 		try {
 			Connection con = getConnection();
+			PreparedStatement createArtists = con.prepareStatement("CREATE TABLE IF NOT EXISTS  Artists(\n"
+					+ "    artistid int,\n" + "    username char(30) NOT NULL,\n" + "    password char(30),\n"
+					+ "    rating decimal(10,2),\n " + "    relevancyIndex decimal(10,2),\n"
+					+ "    payPercentage decimal(10,2)\n," + "    managerid int\n,"
+					+ "     FOREIGN KEY (managerid) REFERENCES Managers(managerid),\n"
+					+ "    PRIMARY KEY (artistid))\n\n");// create Artists table
+
 			PreparedStatement createlistOfVenues = con
-					.prepareStatement("CREATE TABLE IF NOT EXISTS listOfVenues(venueid int,\r\n"
-							+ "                           venuename char(30),\r\n"
-							+ "						      distanceVenueArtist int,\r\n"
-							+ "						      OrganizerName char(30),\r\n"
-							+ "                           location char (20),\r\n"
-							+ "                           clean decimal(10,2),\r\n"
-							+ "                           veninstall decimal(10,2),\r\n"
-							+ "                           duration int,\r\n"
-							+ "                           cut decimal(10,2),\n\n"
-							+ "                           PRIMARY KEY (venueid))");// create listOfVenues table
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Venues(venuename char(30),\r\n"
+							+ "                                  cost decimal(10,2),\r\n"
+							+ "                                  capacity int,\r\n"
+							+ "                                  PRIMARY KEY (venuename))");// create Venues table
 			PreparedStatement createManagers = con
 					.prepareStatement("CREATE TABLE IF NOT EXISTS Managers( managerid int,\r\n"
 							+ "							 username char(30),\r\n"
 							+ "							 managerpassword char(50),\r\n"
 							+ "                          PRIMARY KEY (managerid))");// create listOfManagers table
-			
-			PreparedStatement createPartners = con
-					.prepareStatement("CREATE TABLE IF NOT EXISTS Partners(partname char(20),\r\n"
-							+ "								    attribute char(30),\r\n"
-							+ "                                    payPerHour decimal(10,2),\r\n"
-							+ "                                    PRIMARY KEY (partname)");// create Partner Table
-
-			PreparedStatement createStudios = con
-					.prepareStatement("CREATE TABLE IF NOT EXISTS Studios(studioname char(30),\r\n"
-							+ "								   pricePerHour decimal(10,2),\r\n"
-							+ "                                   PRIMARY KEY (studioname)");// create Studios table
-			
-			PreparedStatement createArtists = con.prepareStatement("CREATE TABLE IF NOT EXISTS  Artists(\n"
-					+ "    artistid int,\n" + "    username char(30) NOT NULL,\n" + "    password char(30),\n"
-					+ "    rating decimal(10,2),\n " + "    relevancyIndex decimal(10,2),\n" 
-					+ "    payPercentage decimal(10,2)\n," + "    managerid int\n,"
-
-					+ "    PRIMARY KEY (artistid),\n"// create Artists table
-			+ "     FOREIGN KEY (managerid) REFERENCES Managers(managerid))\n\n");
-
-			
-
 			PreparedStatement createAlbums = con
 					.prepareStatement("CREATE TABLE IF  NOT EXISTS Albums(albumName char(30),\r\n"
-							+ "								      pricep decimal(10,2),\r\n"
+							+ "								   pricep decimal(10,2),\r\n"
 							+ "                                   priced decimal(10,2),\r\n"
 							+ "                                   physical int,\r\n"
 							+ "                                   digital int,\r\n"
 							+ "                                   artistid int,\r\n"
 							+ "                                   completed int,\r\n"
-							+ "                                   PRIMARY KEY (albumName),"
-							+ "                                   FOREIGN KEY (artistid) REFERENCES Artist(artistid))");// create
-																														// Albums
+							+ "                                   PRIMARY KEY (albumName),\r\n"
+							+ "                                   FOREIGN KEY (artistid) REFERENCES Artists(artistid))");// create
+																															// Albums
 			PreparedStatement createSongs = con
 					.prepareStatement("CREATE TABLE IF NOT EXISTS Songs(songname char(30),\r\n"
 							+ "								 albumName char(30),\r\n"
@@ -75,14 +47,35 @@ public class Database {
 							+ "								 FOREIGN KEY(albumName) REFERENCES Albums(albumName))");// create
 																													// Songs
 																													// table
-	
-			createlistOfVenues.executeUpdate();
+			PreparedStatement createPartners = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Partners(partname char(20),\r\n"
+							+ "								    attribute char(30),\r\n"
+							+ "                                    payPerHour decimal(10,2),\r\n"
+							+ "                                    PRIMARY KEY (partname))");// create Partner Table
+
+			PreparedStatement createStudios = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Studios(studioname char(30),\r\n"
+							+ "								   pricePerHour decimal(10,2),\r\n"
+							+ "                                   PRIMARY KEY (studioname))");// create Studios table
+
+			PreparedStatement createTimeline = con
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Timeline(artistid int,\r\n"
+							+ "									imera int,\r\n"
+							+ "                                    minas int,\r\n"
+							+ "                                    kind char(20),\r\n"
+							+ "									FOREIGN KEY (artistid) REFERENCES Artists(artistid))");// create
+																														// table
+																														// timeline
+
 			createManagers.executeUpdate();
 			createArtists.executeUpdate();
+			createlistOfVenues.executeUpdate();
 			createAlbums.executeUpdate();
 			createSongs.executeUpdate();
 			createPartners.executeUpdate();
 			createStudios.executeUpdate();
+			createTimeline.executeUpdate();
+			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -92,30 +85,29 @@ public class Database {
 	// ADDING METHODS
 
 	public static void addsArtists(int artistid, String username, String password, double rating, double relevancyIndex,
-			String genre, double payPercentage, int managerid) {// inserts new artists
+			double payPercentage, int managerid) {// inserts new artists
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO Artists(artistid,username,password,rating,relevancyIndex,genre,payPercentage,managerid) VALUES (?,?,?,?,?,?,?,?)");
+					"INSERT INTO Artists(artistid,username,password,rating,relevancyIndex,payPercentage,managerid) VALUES (?,?,?,?,?,?,?)");
 			statement.setInt(1, artistid);// adds artistid
 			statement.setString(2, username);// addes username
 			statement.setString(3, password);// adds password
 			statement.setDouble(4, rating);// adds rating
 			statement.setDouble(5, relevancyIndex);// adds relevancyIndex
-			statement.setString(6, genre);// adds genre
-			statement.setDouble(7, payPercentage);// addes payPercentage
-			statement.setInt(8, managerid);// adds managerid
+			statement.setDouble(6, payPercentage);// addes payPercentage
+			statement.setInt(7, managerid);// adds managerid
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
 		} catch (Exception e) {
-			System.out.println("Could not add artist to database because it already exists :(");
+			System.out.println(e);
 		}
 	}
 
 	public static void addsManagers(int managerid, String username, String password) {// inserts new managers
 		try {
 			PreparedStatement statement = (PreparedStatement) getConnection()
-					.prepareStatement("INSERT INTO Managers(managerid,username,password) VALUES(?,?,?)");
+					.prepareStatement("INSERT INTO Managers VALUES(?,?,?)");
 			statement.setInt(1, managerid);// adds managerid
 			statement.setString(2, username);// addes username
 			statement.setString(3, password);// adds password
@@ -123,52 +115,50 @@ public class Database {
 			statement.close();
 			System.out.println("added succesfully!!!:)");
 		} catch (Exception e) {
-			System.out.println("Could not add VENUE to database because it already exists :(");
+			System.out.println(e);
 		}
 	}
 
-	public static void addsVenues(int venueid, String venuename, int distanceVenueArtist, String OrganizerName,
-			String location, double clean, double veninstall, int duration, double cut) {// inserts
-																							// new
-																							// venues
+	public static void addsVenues(double cost, String name, int capacity) {// inserts
+																			// new
+																			// venues
 		try {
-			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO listOfVenues(venueid, venuename, distanceVenueArtist, OrganizerName, location, clean, veninstall, duration, cut) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-			statement.setInt(1, venueid);// adds venueid
-			statement.setString(2, venuename);// addes venuename
-			statement.setInt(3, distanceVenueArtist);// adds distanceVenueArtist
-			statement.setString(4, OrganizerName);// adds OrganizerName
-			statement.setString(5, location);// addes location
-			statement.setDouble(6, clean);// adds clean
-			statement.setDouble(7, veninstall);// adds veninstall
-			statement.setInt(8, duration);// addes duration
-			statement.setDouble(9, cut);// adds cut
+			PreparedStatement statement = (PreparedStatement) getConnection()
+					.prepareStatement("INSERT INTO Venues(venuename,cost,capacity) VALUES(?,?,?)");
+			statement.setString(1, name);// adds venueid
+			statement.setDouble(2, cost);// addes venuename
+			statement.setInt(3, capacity);// adds distanceVenueArtist
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
 		} catch (Exception e) {
-			System.out.println("Could not add venue to database because it already exists :(");
+			System.out.println(e);
 		}
 	}
 
 	public static void addsAlbums(String albumName, double pricep, double priced, int physical, int digital,
-			int completed) {// inserts
+			int artistid, int completed) {// inserts
 		// new
 		// albums
 		try {
+
 			PreparedStatement statement = (PreparedStatement) getConnection().prepareStatement(
-					"INSERT INTO Albums(albumName, pricep, priced, physical, digital, completed) VALUES(?,?,?,?,?,?)");
+					"INSERT INTO Albums(albumName, pricep, priced, physical, digital,artistid, completed) VALUES(?,?,?,?,?,?,?)");
 			statement.setString(1, albumName);// adds albumName
 			statement.setDouble(2, pricep);// adds pricep
 			statement.setDouble(3, priced);// adds priced
 			statement.setInt(4, physical);// adds physical
 			statement.setInt(5, digital);// adds digital
-			statement.setInt(6, completed);// adds completed
+			statement.setInt(6, artistid);// adds artistid
+			statement.setInt(7, completed);// adds completed
 			statement.executeUpdate();// execute the insert
 			statement.close();
 			System.out.println("added succesfully!!!:)");
+			Album album = new Album(albumName, pricep, priced, physical, artistid, completed, completed);
+			findWhichAlbum(artistid).add(album);
+
 		} catch (Exception e) {
-			System.out.println("Could not add album to database because it already exists :(");
+			e.printStackTrace();
 		}
 	}
 
@@ -182,220 +172,446 @@ public class Database {
 			statement.close();
 			System.out.println("added succesfully!!!:)");
 		} catch (Exception e) {
-			System.out.println("Could not add song to database because it already exists :(");
+			System.out.println(e);
 		}
 	}
 
-	// VIEW METHODS
-
-	public static void viewAlbum() {// fills Albums arrayList with albums from database
+	public static void addsPartners(String name, String attribute, Double payPerHour) {
 		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM Albums");
-			ResultSet result = statement.executeQuery();
-			Artist art = null;
-			art.getAlbums().clear();// emptying Albums arraylist to update it
-			Album album;
-			while (result.next()) {
-				album = new Album(findWhichSongs(result.getString("albumName")), result.getString("albumName"),
-						result.getDouble("pricep"), result.getDouble("priced"), result.getInt("physical"),
-						result.getInt("digital"), result.getInt("completed"));// TODO constructor Album
-				art.getAlbums().add(album);// adds new album to the Albums arraylist
-			}
-			System.out.println("Done!");
+			PreparedStatement statement = (PreparedStatement) getConnection()
+					.prepareStatement("INSERT INTO Partners(partname,attribute,payPerHour) VALUES(?,?,?)");
+			statement.setString(1, name);// adds name of the partner
+			statement.setString(2, attribute);// adds the attribute
+			statement.setDouble(3, payPerHour);// adds payPerHour
+			statement.executeUpdate();// execute the insert
+			statement.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	public static void viewAllArtists() {
+	public static void addsStudios(String name, Double pricePerHour) {
 		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM Artists");
-			ResultSet result = statement.executeQuery();
-			Manager man = null;
-			man.getArtists().clear();// emptying Artists arraylist to update it
-			Artist art;
-			while (result.next()) {
-				art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
-						result.getDouble("rating"), result.getDouble("relevancyIndex"),
-						findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
-						result.getDouble("payPercentage"));
-				man.getArtists().add(art);
-			}
+			PreparedStatement statement = (PreparedStatement) getConnection()
+					.prepareStatement("INSERT INTO Studios(studioname,pricePerHour) VALUES(?,?)");
+			statement.setString(1, name);// adds name of the studio
+			statement.setDouble(2, pricePerHour);// adds priceperHour
+			statement.executeUpdate();// execute the insert
+			statement.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	public static void viewSongs() {
+	public static void addsEvent(int artistid, int imera, int minas, String kind) {// kind can be production or
+																					// performance
 		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM Songs");
-			ResultSet result = statement.executeQuery();
-			Album alb = null;// ???
-			alb.getAlbumSongs().clear();// emptying Songs arraylist to update it
-			while (result.next()) {
-				alb.getAlbumSongs().add(result.getString("songname"));
-			}
-
+			PreparedStatement statement = (PreparedStatement) getConnection()
+					.prepareStatement("INSERT INTO Timeline(artistid, imera, minas, kind) VALUES (?,?,?,?)");
+			statement.setInt(1, artistid);// adds artistid
+			statement.setInt(2, imera);// adds day
+			statement.setInt(3, minas);// adds month
+			statement.setString(4, kind);// adds kind
+			statement.executeUpdate();// execute the insert
+			statement.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-	}
-
-	public static ArrayList<Artist> viewManagersArtist(int managerid) {// shows all the artists of each manager
-		ArrayList<Artist> managersArtists = new ArrayList<Artist>();
-		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con
-					.prepareStatement("SELECT * FROM Artists WHERE " + managerid + "=Artists.managerid");
-			ResultSet result = statement.executeQuery();
-			Manager man = null;
-			man.getArtists().clear();// emptying Artists arraylist to update it
-			Artist art;
-			while (result.next()) {
-				art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
-						result.getDouble("rating"), result.getDouble("relevancyIndex"),
-						findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
-						result.getDouble("payPercentage"));
-				managersArtists.add(art);
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return managersArtists;
 	}
 
 //METHODS TO FIND STAFFS FROM DATABASES TABLES
 
-	public static boolean credentialsOkArtist(String username, String password) throws Exception {
+	public static Artist findArtist(int artistid) throws Exception {// finds Artist with the giver artistid
 		Connection con = getConnection();
-		PreparedStatement statement = con.prepareStatement("SELECT * FROM ARTISTS WHERE ARTISTS.username="+username);
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Artists  WHERE artistid=" + artistid);
 		ResultSet result = statement.executeQuery();
-		if(result.getString("username")==null) {
-			return false;
-		}else if(result.getString("username")==username&&result.getString("password")=="password") {
-			return true;
-		}else 
-			return false;
-		
+		result.beforeFirst();
+		result.next();
+		Artist art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+				result.getDouble("rating"), result.getDouble("relevancyIndex"), result.getDouble("payPercentage"));
+		con.close();
+		return art;
+
 	}
 
-	public static boolean credentialsOkManager(String username, String password) {
-		try {
+	public static ArrayList<Album> findWhichAlbum(int artistid) throws Exception {// finds the albums of the artist with
+																					// given artistid
+		ArrayList<Album> Albums = new ArrayList<Album>();// arraylist of albums
 		Connection con = getConnection();
-		PreparedStatement statement = con.prepareStatement("SELECT * FROM MANAGERS WHERE ARTISTS.username="+username);
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Albums WHERE artistid= " + artistid);
 		ResultSet result = statement.executeQuery();
-		if(result.getString("username")==null) {
-			return false;
-		}else if(result.getString("username")==username&&result.getString("password")=="password") {
-			return true;
-		}else 
-			return false;
+		Album album;
+		while (result.next()) {
+			album = new Album(result.getString("albumName"), result.getInt("artistid"), result.getInt("completed"));
+			Albums.add(album);// adds album to the arraylist
+		}
+		con.close();
+		return Albums;
+
+	}
+
+	public static ArrayList<String> findWhichSongs(String albumName) throws Exception {
+		ArrayList<String> Songs = new ArrayList<String>();// arraylist of songs
+
+		Connection con = getConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Songs WHERE albumName ='" + albumName + "'");
+		ResultSet result = statement.executeQuery();
+		String song;
+		while (result.next()) {
+			song = result.getString("songname");
+			Songs.add(song);
+		}
+		con.close();
+		return Songs;
+	}
+
+	public static ArrayList<Venues> returnVenues() throws Exception {// returns all the events
+		ArrayList<Venues> venues = new ArrayList<Venues>();
+		Connection con = getConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Venues");
+		ResultSet result = statement.executeQuery();
+		Venues venue = null;// initialize
+		while (result.next()) {
+			venue = new Venues(result.getDouble("cost"), result.getString("venuename"), result.getInt("capacity"));
+			venues.add(venue);
+		}
+		con.close();
+		return venues;
+	}
+
+	public static Album findAlbumByName(String albumName) throws Exception {// finds the album with the given albumname
+		Connection con = getConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Albums WHERE albumName='" + albumName + "'");
+		ResultSet result = statement.executeQuery();
+		Album alb = null;
+		while (result.next()) {
+			alb = new Album(result.getString("albumName"), result.getInt("artistid"), result.getInt("completed"));
+		}
+		con.close();
+		return alb;
+	}
+
+	public static int findNumberOfSongs(String albumName) throws Exception {// finds numbers of songs that exist in the
+																			// album with the given albumname
+		Connection con = getConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT * FROM Songs WHERE albumName='" + albumName + "'");
+		ResultSet result = statement.executeQuery();
+		int count = 0;
+		while (result.next()) {
+			count += 1;
+		}
+		con.close();
+		return count;
+	}
+
+	public static boolean credentialsOkArtist(String username, String password) throws Exception {// checks if the
+																									// username and
+																									// paasword of the
+																									// artist is ok
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("SELECT * FROM Artists WHERE username='" + username + "'");
+			ResultSet result = statement.executeQuery();
+			boolean foundAUser = false;
+			boolean credsOk = false;
+			while (result.next()) {
+				String correctUsername = result.getString(2);
+				String correctPassword = result.getString(3);
+				System.out.println(correctUsername + "pass " + correctPassword);
+				System.out.println("GIVEN" + username + " pass " + password);
+				if (correctUsername.equalsIgnoreCase(username) && correctPassword.equalsIgnoreCase(password)) {// its
+																												// all
+																												// good
+					System.out.println("found both");
+					System.out.println(returnArtist(username));
+					credsOk = true;
+					return true;
+				} else// something is wrong
+
+					System.out.println("else");
+			}
+			con.close();
+			return credsOk;
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		System.out.println("finished");
+		return false;
+
+	}
+
+	public static boolean credentialsOkManager(String username, String password) {// checks if the username and password
+																					// of the manager is ok
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("SELECT * FROM Managers WHERE username='" + username + "'");
+			ResultSet result = statement.executeQuery();
+			boolean foundAUser = false;
+			boolean credsOk = false;
+			while (result.next()) {
+				String correctUsername = result.getString(2);
+				String correctPassword = result.getString(3);
+				System.out.println(correctUsername + "pass " + correctPassword);
+				System.out.println("GIVEN" + username + " pass " + password);
+				if (correctUsername.equalsIgnoreCase(username) && correctPassword.equalsIgnoreCase(password)) {// its
+																												// all
+																												// good
+					System.out.println("found both");
+					System.out.println(returnManager(username));
+					credsOk = true;
+					return true;
+				} else// something is wrong
+
+					System.out.println("else");
+			}
+			con.close();
+			return credsOk;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println("finished");
 		return false;
 	}
 
-	public static Manager returnManager(String onoma) {
-		Manager man=null;
+	public static Manager returnManager(String onoma) {// returns manager with the given name
+		Manager man = null;
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM MANAGERS WHERE username=" + onoma);
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM Managers WHERE username='" + onoma + "'");
 			ResultSet result = statement.executeQuery();
-			man = new Manager(result.getInt("managerid"), result.getString("username"),
-					result.getString("managerpassword"), findWhichArtist(result.getInt("managerid")));
+			while (result.next()) {
+				man = new Manager(result.getInt("managerid"), result.getString("username"),
+						result.getString("managerpassword"), findWhichArtist(result.getInt("managerid")));
+			}
+			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return man;
 	}
 
-	public static Artist returnArtist(String onoma) {
-		Artist art=null;
+	public static Artist returnArtist(String onoma) {// returns artist with the given name
+		Artist art = null;
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT * FROM ARTISTS WHERE username=" + onoma);
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM Artists WHERE username='" + onoma + "'");
 			ResultSet result = statement.executeQuery();
-			art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
-					result.getDouble("rating"), result.getDouble("relevancyIndex"),
-					findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
-					result.getDouble("payPercentage"));
+			while (result.next()) {
+				art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+						result.getDouble("rating"), result.getDouble("relevancyIndex"),
+						result.getDouble("payPercentage"));
+			}
+			System.out.println("Artist beign returned from db " + art.toString());
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return art;
 	}
 
-	public static ArrayList<Album> findWhichAlbum(int artistid) {// finds the album for the artist
-		ArrayList<Album> Albums = new ArrayList<Album>();// temp album arraylist
+	public static ArrayList<Artist> findWhichArtist(int managerid) {// finds artists that been managered from the
+																	// manager with the given managerid
+		ArrayList<Artist> Artists = new ArrayList<Artist>();
+		Artist art;
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement(
-					"SELECT albumName, pricep,priced,physical,digital  FROM Artists, Albums WHERE artistid.Artist=artistid.Albums");
+			PreparedStatement statement = con
+					.prepareStatement("SELECT * FROM Artists WHERE managerid='" + managerid + "'");
 			ResultSet result = statement.executeQuery();
-			Album album;
-			while (result.next()) {
-				album = new Album(findWhichSongs(result.getString("albumName")), result.getString("albumName"),
-						result.getDouble("pricep"), result.getDouble("priced"), result.getInt("physical"),
-						result.getInt("digital"), result.getInt("completed"));
-				Albums.add(album);
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return Albums;
-	}
 
-	public static ArrayList<Artist> findWhichArtist(int managerid){
-		ArrayList<Artist> Artists=new ArrayList<Artist>();
-		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT artistid  username  password rating relevancyIndex  genre payPercentage managerid FROM Artists A, MANAGER M WHERE A.managerid=M.managerid");
-			ResultSet result = statement.executeQuery();
-			Artist art;
 			while (result.next()) {
-				art=new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
+				art = new Artist(result.getInt("artistid"), result.getString("username"), result.getString("password"),
 						result.getDouble("rating"), result.getDouble("relevancyIndex"),
-						findWhichAlbum(result.getInt("artistid")), result.getString("genre"),
 						result.getDouble("payPercentage"));
 				Artists.add(art);
 			}
-	} catch (Exception e) {
-		System.out.println(e);
-	}
-		return Artists;
-	}
+			con.close();
 
-	public static ArrayList<String> findWhichSongs(String albumName) {
-		ArrayList<String> Songs = new ArrayList<String>();// temp songs arraylist
-		try {
-			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement(
-					"SELECT songname, albumName FROM Songs,Albums WHERE Songs.albumName=ALbum.albumName");
-			ResultSet result = statement.executeQuery();
-			String song;
-			while (result.next()) {
-				song = new String(result.getString("songname"));
-				Songs.add(song);
-			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return Songs;
+		return Artists;
 	}
 
-//METHOD TO FILL THE DATABASE TABLES
+	public static int returnArtistid(String name) {// returns artistid base to the given username of the artist
+		int id = 0;
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("SELECT artistid FROM Artists WHERE username='" + name + "'");
+			ResultSet result = statement.executeQuery();
+			result.beforeFirst();
+			result.next();
+			id = result.getInt("artistid");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return id;
+	}
 
-	public static void startInserts() {// adds staffs to the database tables
-		addsAlbums("rock", 2.4, 5.86, 345, 4366, 0);
-		addsArtists(1, "eminem", "123efvwv", 213.23, 1244.55, "rock", 14.4, 1);
-		addsVenues(1, "rockfestival", 505, "mitsos", "SKG", 15.6, 16.6, 13, 13.8);
-		addsSongs("TA MATOKLADA SOU LAMPOUN", "rock");
-		addsManagers(1, "ela poios", "21e dewcdwe");
-		
+	public static ArrayList<Partner> returnPartners() {// return alla partners
+		Partner part;
+		ArrayList<Partner> partners = new ArrayList<Partner>();
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM Partners");
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				part = new Partner(result.getString("partname"), result.getString("attribute"),
+						result.getDouble("payPerHour"));
+				partners.add(part);
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return partners;
+
+	}
+
+	public static ArrayList<Studio> returnStudios() {// return all studios
+		Studio stud;
+		ArrayList<Studio> studios = new ArrayList<Studio>();
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("SELECT * FROM Studios");
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				stud = new Studio(result.getString("studioname"), result.getDouble("pricePerHour"));
+				studios.add(stud);
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return studios;
+
+	}
+
+	public static ArrayList<Event> returnEvent(int artistid) {// return the events of oine artist with the given
+																// artistid
+		ArrayList<Event> events = new ArrayList<Event>();
+		Event event;
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con
+					.prepareStatement("SELECT * FROM Timeline WHERE artistid='" + artistid + "'");
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				event = new Event(result.getInt("artistid"), result.getInt("imera"), result.getInt("minas"),
+						result.getString("kind"));
+				events.add(event);
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return events;
+	}
+
+	// Methods to update tables
+
+	public static void updateAlbum(String albumname, double pricep, double priced, int physical, int digital,
+			int artistid, int completed) {// update an insert in the album table in the database
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement(
+					"UPDATE Albums\r\n" + "SET albumName ='" + albumname + "'" + ", pricep = " + pricep + ",priced = "
+							+ priced + " ,physical = " + physical + " ,digital = " + digital + " ,artistid = "
+							+ artistid + " ,completed = " + completed + "\r\n" + "WHERE albumName='" + albumname + "'");
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public static Connection getConnection() throws Exception {// connecting to database
+		try {
+			// String driver = "com.mysql.jdbc.Driver";
+			String url = "jdbc:mysql://remotemysql.com:3306/49YiSU5950";
+			String username = "49YiSU5950";
+			String password = "JCbOC8Tsqd";
+			// Class.forName(driver);
+
+			Connection conn = DriverManager.getConnection(url, username, password);
+			// System.out.println("Connected");
+			return conn;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Could not connect to database! AT THE GET CONNECTION METHOD");
+			return null;
+		}
+
+	}
+
+	// METHOD TO FILL THE DATABASE TABLES
+
+	public static void startInserts() {// adds staffs to the database tables (already been executed)
+
+		// adds new Managers
+
+		addsManagers(1, "Frank Johnson", "bsfojbaej2jbu");
+		addsManagers(2, "Dave Smith", "nuef8jihuw89");
+		addsManagers(3, "Kate Hamilton", "jbiue8ohie8h8hgy6");
+		addsManagers(4, "Iris Karanikolaou", "jbuu9e763y63");
+		addsManagers(5, "Matt Collins", "kjnwueiy2y3r");
+
+		// adds new Venues
+
+		addsVenues(40000.00, "again n again", 5000);
+		addsVenues(1005000.00, "bees travel", 30000);
+		addsVenues(5000.00, "OHHH", 5500);
+		addsVenues(15000.00, "kosni", 7000);
+
+		// adds new Artists
+
+		addsArtists(1, "Eminem", "123efvwv", 213.23, 1244.55, 34.40, 2);
+		addsArtists(2, "Matt Elliott", "njse792she", 536.92, 862.38, 22.00, 4);
+		addsArtists(3, "Naxatras", "nax123atr45as6", 632.10, 700.78, 24.50, 5);
+		addsArtists(4, "Vodka Juniors", "jbbeifh73s", 590.22, 509.32, 10.60, 5);
+		addsArtists(5, "Tash Sultana", "iuwe7382jn", 702.32, 2344.33, 30.10, 1);
+		addsArtists(6, "Mogwai", "JBWEF73HD", 309.44, 904.44, 29.30, 3);
+		addsArtists(7, "Pixies", "jef73hew7he", 739.34, 2423.10, 32.30, 2);
+		addsArtists(8, "The Black Keys", "jnef67efuw", 832.30, 2938.44, 40.20, 4);
+		addsArtists(9, "Arctic Monkeys", "mjinnjue", 943.32, 3034.34, 50.50, 1);
+		addsArtists(10, "Villager's of Ioannina City", "jnwuiefu83", 230.23, 890.34, 18.00, 1);
+
+		// adds new Albums (0 for register and 1for completed album)
+
+		addsAlbums("RAP GOD", 0, 0, 0, 0, 1, 0);
+		addsAlbums("The Broken Man", 4.50, 1.33, 120, 345, 3, 1);
+		addsAlbums("III", 2.34, 1.00, 110, 97, 5, 1);
+		addsAlbums("Dark Poetry", 2.50, 1.24, 150, 102, 2, 1);
+		addsAlbums("Notion", 0, 0, 0, 0, 6, 0);
+		addsAlbums("Every Country's Sun", 2.20, 1.15, 203, 309, 9, 1);
+		addsAlbums("Indie Cindy", 4.50, 2.56, 403221, 25, 10, 1);
+		addsAlbums("El Camino", 4.32, 2.45, 319343, 98344, 7, 1);
+		addsAlbums("AM", 5.20, 3.04, 932094, 308234, 8, 1);
+		addsAlbums("Age of Aquarius", 0, 0, 0, 0, 5, 0);
+		addsAlbums("AEK", 324, 340, 3, 32, 1, 0);
+
+		// adds new Partners
+
+		addsPartners("John Papanikolaou", "Vocals", 0.03);
+		addsPartners("Stefanos Dibler", "Tromponi", 0.025);
+		addsPartners("Thanases Alexandris", "Piano", 0.035);
+		addsPartners("Lang Lang", "Piano", 0.05);
+		addsPartners("James Galway", "Flute", 0.03);
+		addsPartners("David Xyn", "Drams", 0.01);
+		addsPartners("Chris James", "Vocals", 0.013);
+		addsPartners("Lady Gigi", "Guitar", 0.02);
+		addsPartners("Giannis Psaras", "Electric Guitar", 0.03);
+
+		// adds new Studios
+
+		addsStudios("Xoros Melodias", 200.00);
+		addsStudios("Sound Quality", 250.00);
+		addsStudios("Spinning Records", 449.00);
+
+		// adds new songs
+
 		addsSongs("Good Times For Me", "The Broken Man");
 		addsSongs("Bad Sign Of Hurting", "The Broken Man");
 		addsSongs("Desire", "The Broken Man");
@@ -526,7 +742,7 @@ public class Database {
 		addsSongs("Roxanne", "Notion");
 		addsSongs("G19", "Notion");
 		addsSongs("Panic", "Notion");
-		addsSongs("Borders","Notion");
+		addsSongs("Borders", "Notion");
 		addsSongs("Colpo Grosso", "Notion");
 		addsSongs("OCD", "Notion");
 		addsSongs("Africa", "Notion");
@@ -543,7 +759,7 @@ public class Database {
 		addsSongs("Amsterdam", "Every Country's Sun");
 		addsSongs("Daewoo", "Every Country's Sun");
 		addsSongs("Midnight", "Every Country's Sun");
-		addsSongs("Hype", "Every Country's Sun"); 
+		addsSongs("Hype", "Every Country's Sun");
 		addsSongs("Sun", "Every Country's Sun");
 		addsSongs("Hoollywood", "Every Country's Sun");
 		addsSongs("The Enemy", "Every Country's Sun");
@@ -563,7 +779,7 @@ public class Database {
 		addsSongs("Single Again", "Indie Cindy");
 		addsSongs("Allez", "El Camino");
 		addsSongs("Mosca", "El Camino");
-		addsSongs("Sandra", "El Camino"); 
+		addsSongs("Sandra", "El Camino");
 		addsSongs("Returns", "El Camino");
 		addsSongs("Options", "El Camino");
 		addsSongs("Hate Myself", "El Camino");
@@ -603,60 +819,5 @@ public class Database {
 		addsSongs("Trophies", "The Broken Man");
 		addsSongs("Flame", "The Broken Man");
 
-		addsVenues(1, "OAKA", 20 , "Giorgos Alexakis","Maroussi",20,50,2,0.4);
-		addsVenues(2, "Eclipse", 70 , "Giannos","Thiva",15,40,1,0.25);
-		addsVenues(3, "Vex", 150 , "Paris Babis","Patra",18,30,3,0.2);
-		addsVenues(4, "Jinx",300 , "Ioannis Petrakis","Ioannina",15,35,1,0.1);
-		addsVenues(5, "Forte",650, "Vasilis Giousis","Thessaloniki",25,45,2,0.35);
-		addsVenues(6, "Riot",850 , "Stefanos Androulakis","Alexandroupoli",15,25,2,0.1);
-		
-		addsArtists(1, "Eminem", "123efvwv", 213.23, 1244.55, "rock", 34.40, 2);
-		addsArtists(2, "Matt Elliott", "njse792she", 536.92, 862.38, "folk", 22.00, 4);
-		addsArtists(3, "Naxatras", "nax123atr45as6", 632.10, 700.78, "psychedelic rock", 24.50, 5);
-		addsArtists(4, "Vodka Juniors", "jbbeifh73s", 590.22, 509.32, "hardcore punk", 10.60, 5);
-		addsArtists(5, "Tash Sultana", "iuwe7382jn", 702.32, 2344.33, "psychedelic rock", 30.10, 1);
-		addsArtists(6, "Mogwai", "JBWEF73HD", 309.44, 904.44, "post rock", 29.30, 3);
-		addsArtists(7, "Pixies", "jef73hew7he", 739.34, 2423.10, "alternative rock", 32.30, 2);
-		addsArtists(8, "The Black Keys", "jnef67efuw", 832.30, 2938.44, "garage rock", 40.20, 4);
-		addsArtists(9, "Arctic Monkeys", "mjinnjue", 943.32, 3034.34, "AM", 50.50, 1);
-		addsArtists(10, "Villager's of Ioannina City", "jnwuiefu83", 230.23, 890.34, "folk rock", 18.00, 1);
-		
-		//0 for not completed album, 1 for completed//
-		addsAlbums("RAP GOD", 0, 0, 0, 0, 0);
-		addsAlbums("The Broken Man", 4.50, 1.33, 120, 345, 1);
-		addsAlbums("III", 2.34, 1.00, 110, 97, 1);
-		addsAlbums("Dark Poetry", 2.50, 1.24, 150, 102, 1);
-		addsAlbums("Notion", 0, 0, 0, 0, 0);
-		addsAlbums("Every Country's Sun", 2.20, 1.15, 203, 309, 1);
-		addsAlbums("Indie Cindy", 4.50, 2.56, 403221, 25, 1);
-		addsAlbums("El Camino", 4.32, 2.45, 319343, 98344, 1);
-		addsAlbums("AM", 5.20, 3.04, 932094, 308234, 1);
-		addsAlbums("Age of Aquarius", 0, 0, 0, 0, 0);
-		
-		
-		addsManagers(1, "Frank Johnson", "bsfojbaej2jbu");
-		addsManagers(2, "Dave Smith", "nuef8jihuw89");
-		addsManagers(3, "Kate Hamilton", "jbiue8ohie8h8hgy6");
-		addsManagers(4, "Iris Karanikolaou", "jbuu9e763y63");
-		addsManagers(5, "Matt Collins", "kjnwueiy2y3r");
-	}
-
-//CONNECTION METHOD
-
-	public static Connection getConnection() {// connecting to database
-		try {
-			// String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://remotemysql.com:3306/49YiSU5950";
-			String username = "49YiSU5950";
-			String password = "JCbOC8Tsqd";
-			// Class.forName(driver);
-
-			Connection conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Connected");
-			return conn;
-		} catch (Exception e) {
-			System.out.println("Could not connect to the Database :(");
-			return null;
-		}
 	}
 }
