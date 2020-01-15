@@ -1,37 +1,26 @@
+package application.executiveClasses;
+
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Performances {
-
 	private Venues venue;
 	private double ticketPrice;
 	private double ticketSales;
 	private Album AlbumPlayed1;
 	private LocalDate date;
-
-	public Performances(Venues venue, double ticketPrice, double ticketSales, Album albumPlayed1, LocalDate date) {// creates
-																													// a
-																													// Performance
-		super();
-		this.venue = venue;
-		this.ticketPrice = ticketPrice;
-		this.ticketSales = ticketSales;
-		AlbumPlayed1 = albumPlayed1;
-		this.date = date;
-	}
-
+	
 	public double calculateProfit() {
 		try {
-			double cost = venue.getCost();
-			double income = ticketPrice * ticketSales;
-			return income - cost;
-		} catch (NullPointerException e) {
-
+		double cost = venue.getCost();
+		double income = ticketPrice*ticketSales;
+		return income-cost;
+		}catch(NullPointerException e) {
+		
 		}
 		return 0;
 	}
-
-	public double getLiveScore() {
+	public double getLiveScore(){
 		int capacity = venue.getCapacity();
 		double LiveScore = 0;
 		if (capacity <= 1000) {
@@ -44,7 +33,8 @@ public class Performances {
 		return LiveScore;
 	}
 
-	// setters and getters
+	
+
 	public double getTicketPrice() {
 		return ticketPrice;
 	}
@@ -77,4 +67,13 @@ public class Performances {
 		this.date = date;
 	}
 
+	public Performances(Venues venue, double ticketPrice, double ticketSales, Album albumPlayed1, LocalDate date) {
+		super();
+		this.venue = venue;
+		this.ticketPrice = ticketPrice;
+		this.ticketSales = ticketSales;
+		AlbumPlayed1 = albumPlayed1;
+		this.date = date;
+	}
+	
 }
