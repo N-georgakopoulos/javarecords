@@ -5,11 +5,12 @@ __
 
 *PART ONE User’s manual for Artists:* 
 __
-
+BEFORE ATTEMPTING TO RUN THE PROGRAMME MAKE SURE YOU HAVE INITIATED A JAVAFX PROJECT WITH ALL THE NESCESSARY LIBRARIES INCLUDED IN THE JAVAFX SDK AND HAVE INSTALLED E(FX)CLIPSE.ALSO INCLUDE THE mysql-connector-java-8.0.19.jar LIBRARY.
+WITH THE SQL CONNECTOR LIBRARY.
 First is the welcome screen all you have to do is press “Start” button.
 
 Second is the login screen, if you’re an artist follow these steps: 
-1. Fill in the username/password area of the artist section
+1. Fill in the username/password area of the artist section 
 2. Press the “Login” button at the bottom of the artist section
 
 Third is your home screen
@@ -79,3 +80,6 @@ If you clicked performance you’d have access to the Eleventh screen:
 Where performances are divided by month and you can access them by clicking on the month that you're interested in.
 
 ## Thank you for using our ERP for Record Labels
+
+
+
