@@ -1,87 +1,127 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Album {
-	
-	//variables of album
-	private String name
+
+	public static Random rand = new Random();// declaring random num generator
+	// final variables which determine the range of the randomized instance
+	static final int PHYSICALPRICERANGE = 101;
+	static final int DIGITALPRICERANGE = 51;
+	static final int PHYSICALSALESRANGE = 10000001;
+	static final int DIGITALSALESRANGE = 2 * PHYSICALSALESRANGE;
+
+	// Generate empty Arraylist of Song objects so that Production can add Songs to
+	// Albums
+	// Album recording score
+	// private int NumberOfSongs = AlbumSongs.size();
+	// requesting live performance score of an album
+	// double liveScore = Performances.getLiveScore() / NumberOfSongs;
+	// variables of album
+	private String albumname;
 	private double pricep;
 	private double priced;
-	private double physical;
-	private double digital;
-	
-	//setters and getters
-	public	void setname(String AlbumName) {
-        this.name = AlbumName;
-    }
-	
+	private int physical;
+	private int digital;
+	private int artistid;
+	private int completed; // acts as boolean concerning if the album is completed or not
+
+	public Album(String albumname, int artistid, int completed) {
+		this.albumname = albumname;
+		this.completed = completed;
+		this.artistid = artistid;
+		if (completed == 1) {
+			this.pricep = rand.nextInt(PHYSICALPRICERANGE);
+			this.priced = rand.nextInt(DIGITALPRICERANGE);
+			this.physical = rand.nextInt(PHYSICALSALESRANGE);
+			this.digital = rand.nextInt(DIGITALSALESRANGE);
+		} else {
+			this.pricep = 0;
+			this.priced = 0;
+			this.physical = 0;
+			this.digital = 0;
+		}
+
+	}
+
+	public Album(String albumname, double pricep, double priced, int physical, int digital, int artistid,
+			int completed) {// creats an Album
+		super();
+		this.albumname = albumname;
+		this.pricep = pricep;
+		this.priced = priced;
+		this.physical = physical;
+		this.digital = digital;
+		this.artistid = artistid;
+		this.completed = completed;
+	}
+
+	@Override
+	public String toString() {
+		return albumname;
+	}
+
+	// setters and getters
+
+	public void setname(String AlbumName) {
+		this.albumname = AlbumName;
+	}
+
 	public String getname() {
-        return this.name;
-    }
-	
-	public	void setpricep(double pricephy) {
-        this.pricep = pricephy;
-    }
-	
+		return this.albumname;
+	}
+
+	public void setpricep(double pricephy) {
+		this.pricep = pricephy;
+	}
+
 	public double getpricep() {
-        return this.pricep;
-    }
-	
-	public	void setpriced(double pricedig) {
-        this.priced = pricedig;
-    }
-	
+		return this.pricep;
+	}
+
+	public void setpriced(double pricedig) {
+		this.priced = pricedig;
+	}
+
 	public double getpriced() {
-        return this.priced;
-    }
-	
-	public	void setphysical(double physic) {
-        this.physical = physic;
-    }
-	
+		return this.priced;
+	}
+
+	public void setphysical(int physic) {
+		this.physical = physic;
+	}
+
 	public double getphysical() {
-        return this.physical;
-    }
-	
-	public	void setdigital(double digit) {
-        this.digital = digit;
-    }
-	
+		return this.physical;
+	}
+
+	public void setdigital(int digit) {
+		this.digital = digit;
+	}
+
 	public double getdigital() {
-        return this.digital;
-    }
-	
-	//Album sales
-	public double AlbumSales(physical, digital) {
+		return this.digital;
+	}
+
+	// Album sales
+	public double AlbumSales() {
 		double sales = physical + digital;
 		return sales;
 	}
-	
+
 	// Album revenue
-	public double AlbumRevenue(physical, pricep, digital, priced) {
+	public double AlbumRevenue() {
 		double revenue = physical * pricep + digital * priced;
 		return revenue;
 	}
-	
-	//Album popularity
-	
-	/*in desperate need of method SongPopularity of Song class
-	song has views, downloads, release date and method SongPopularity
-	probably its a list of songs that contains all info idk
-	
-	Album needs the popularity of a song,
-	plus the number of songs that this album is supposed to have
-	so that the average will be somewhat like this
-	
-	ισως να βαζαμε την list of songs δώ αν εξυπηρετεί απλά να μου πεις
-	τι μορφή θες να έχει και γενικά καποιες έξτρα πληροφορίες για να την γτιάξω 
-	γιατί αυτές τις μέρες μελέτησα τις λίστες
-	επειδή λεγαμε με την κατερίνα να έχω εγω τη λίστα στις υποχρεώσεις μου
-	αρά αν θες πες μπυ ό,τι να'ναι να σε διευκολύνω.
-	
-	 public double AlbumPopularity(things) {
-	 	double popularity = SongPopularity * NumberOfSongs;
-	 	// μαλλον κατι τετοιο φανταζομαι , αλλα κατι ειχε ειπωθεί για σταθμισμένο μέσο όρο δεν ξερω τι ακριβως ειχατε φανταστει οτι εξυπηρετεί
-	 	return popularity;
-	 }
-	 
-	 αυτά μπορούν να τεθούν και για συζήτηση με όλους ή κι αν βρεις ότι μια λύση ειναι πιο βολική shoot δεν έχω θέμα, όσο πιο γρηγορα μου πεις τι θες σε βοηθάω και τελειωσαμε
-	 */
+
+	public double RecordingScore() throws Exception {
+		double recScore = (0.1 * physical + 0.9 * digital) / Database.findNumberOfSongs(this.albumname);
+		return recScore;
+	}
+
+	public double getPerformanceRevenue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
