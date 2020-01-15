@@ -1,8 +1,8 @@
+package application.executiveClasses;
 
 import java.util.ArrayList;
 
 public class Week {
-
 	private Event d1;
 	private Event d2;
 	private Event d3;
@@ -14,7 +14,8 @@ public class Week {
 	private int monthInt;
 	private int numOfWeekInMonth;
 
-	public Week(Event[] weekEvents, int monthInt, int numOfWeek) {// creates a Week
+	public Week(Event[] weekEvents, int monthInt, int numOfWeek) {
+		super();
 		d1 = weekEvents[0];
 		d2 = weekEvents[1];
 		d3 = weekEvents[2];
@@ -27,7 +28,7 @@ public class Week {
 		this.numOfWeekInMonth = numOfWeek;
 	}
 
-	// setters and getters
+
 	public Event getD1() {
 		return d1;
 	}

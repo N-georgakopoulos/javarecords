@@ -1,17 +1,22 @@
-public class Venues {
+package application.executiveClasses;
 
+public class Venues {
 	private double cost;
 	private String name;
 	private int capacity;
 
-	public Venues(double cost, String name, int capacity) {// creates a venue
+	public Venues(double cost, String name, int capacity) {
 		super();
 		this.cost = cost;
 		this.name = name;
 		this.capacity = capacity;
 	}
 
-	// setters and getters
+	@Override
+	public String toString() {
+		return name;
+	}
+
 	public double getCost() {
 		return cost;
 	}
@@ -34,11 +39,6 @@ public class Venues {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
-	}
-
-	@Override
-	public String toString() {
-		return "Venues [cost=" + cost + ", name=" + name + ", capacity=" + capacity + "]";
 	}
 
 }
